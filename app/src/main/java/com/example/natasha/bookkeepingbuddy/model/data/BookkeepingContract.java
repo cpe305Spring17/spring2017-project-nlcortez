@@ -1,4 +1,4 @@
-package com.example.natasha.bookkeepingbuddy.data;
+package com.example.natasha.bookkeepingbuddy.model.data;
 
 import android.provider.BaseColumns;
 

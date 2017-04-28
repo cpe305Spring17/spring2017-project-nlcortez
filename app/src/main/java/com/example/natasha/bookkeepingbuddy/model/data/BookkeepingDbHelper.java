@@ -1,10 +1,10 @@
-package com.example.natasha.bookkeepingbuddy.data;
+package com.example.natasha.bookkeepingbuddy.model.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.natasha.bookkeepingbuddy.data.BookkeepingContract.*;
+import com.example.natasha.bookkeepingbuddy.model.data.BookkeepingContract.*;
 /**
  * Created by Natasha on 4/21/2017.
  */

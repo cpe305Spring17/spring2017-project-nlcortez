@@ -4,36 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.natasha.bookkeepingbuddy.MainActivity"
+    tools:context="com.example.natasha.bookkeepingbuddy.view.MainActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout_editor_absoluteX="16dp">
+
+        <EditText
+            android:id="@+id/cat_name_edit_text"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cat_unit_edit_text"
+            android:layout_marginTop="59dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Category"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <EditText
+            android:id="@+id/cat_unit_edit_text"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/save_button"
+            android:layout_marginTop="52dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Unit"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="82dp" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="138dp"
+            android:layout_marginStart="138dp"
+            android:layout_weight="0.21"
+            android:text="Save"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="421dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="379dp"
+        android:layout_height="571dp"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="200dp" />
+        tools:layout_editor_absoluteY="16dp">
 
-    <EditText
-        android:id="@+id/cat_name_edit_text"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Category"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
-
-    <EditText
-        android:id="@+id/cat_unit_edit_text"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Unit"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="82dp" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
