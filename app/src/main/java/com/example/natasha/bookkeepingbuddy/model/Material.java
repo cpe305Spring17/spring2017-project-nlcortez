@@ -5,4 +5,19 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class Material {
+    private int currentQuantity;
+    private MaterialTemplate template;
+
+    public Material(MaterialTemplate template) {
+        this.template = template;
+        setCurrentQuantity(template.getMeasuredQuantity());
+    }
+
+    public int getCurrentQuantity() {
+        return currentQuantity;
+    }
+
+    public void setCurrentQuantity(int currentQuantity) {
+        this.currentQuantity = currentQuantity;
+    }
 }
