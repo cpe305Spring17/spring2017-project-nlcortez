@@ -13,5 +13,7 @@ public final class BookkeepingContract {
         public static final String TABLE_NAME = "categories";
         public static final String COLUMN_CATEGORY_NAME = "name";
         public static final String COLUMN_UNIT = "unit";
+
+        private CategoryEntry() {}
     }
 }
