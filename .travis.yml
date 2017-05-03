@@ -33,6 +33,10 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
+addons:
+  sonarqube:
+    organization: "305"
+
 before_install:
   - chmod +x gradlew
   - mkdir "$ANDROID_HOME/licenses" || true
@@ -45,9 +49,6 @@ before_script:
   #- android-wait-for-emulator
   #- adb shell input keyevent 82 &
 
-addons:
-  sonarqube:
-    organization: "305"
-
 script: ./gradlew clean build
+script:
   - sonar-scanner
