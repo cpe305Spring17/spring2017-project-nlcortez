@@ -7,13 +7,15 @@ import android.provider.BaseColumns;
  */
 
 public final class BookkeepingContract {
-    private BookkeepingContract() {}
+  private BookkeepingContract() {
+  }
 
-    public static final class CategoryEntry implements BaseColumns {
-        public static final String TABLE_NAME = "categories";
-        public static final String COLUMN_CATEGORY_NAME = "name";
-        public static final String COLUMN_UNIT = "unit";
+  public static final class CategoryEntry implements BaseColumns {
+    public static final String TABLE_NAME = "categories";
+    public static final String COLUMN_CATEGORY_NAME = "name";
+    public static final String COLUMN_UNIT = "unit";
 
-        private CategoryEntry() {}
+    private CategoryEntry() {
     }
+  }
 }

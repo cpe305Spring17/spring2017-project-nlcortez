@@ -5,27 +5,27 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class FinishedProduct {
-    private double materialsCost;
-    private ProductTemplate template;
+  private double materialsCost;
+  private ProductTemplate template;
 
-    public FinishedProduct(double materialsCost, ProductTemplate template) {
-        this.materialsCost = materialsCost;
-        this.template = template;
-    }
+  public FinishedProduct(double materialsCost, ProductTemplate template) {
+    this.materialsCost = materialsCost;
+    this.template = template;
+  }
 
-    public double getMaterialsCost() {
-        return materialsCost;
-    }
+  public double getMaterialsCost() {
+    return materialsCost;
+  }
 
-    public void setMaterialsCost(double materialsCost) {
-        this.materialsCost = materialsCost;
-    }
+  public void setMaterialsCost(double materialsCost) {
+    this.materialsCost = materialsCost;
+  }
 
-    public ProductTemplate getTemplate() {
-        return template;
-    }
+  public ProductTemplate getTemplate() {
+    return template;
+  }
 
-    public void setTemplate(ProductTemplate template) {
-        this.template = template;
-    }
+  public void setTemplate(ProductTemplate template) {
+    this.template = template;
+  }
 }

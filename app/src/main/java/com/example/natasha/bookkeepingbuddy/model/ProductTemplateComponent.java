@@ -5,28 +5,28 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class ProductTemplateComponent {
-    private int quantityNeeded;
-    private MaterialCategory category;
+  private int quantityNeeded;
+  private MaterialCategory category;
 
-    public ProductTemplateComponent(int quantityNeeded, MaterialCategory category) {
-        this.quantityNeeded = quantityNeeded;
-        this.category = category;
-    }
+  public ProductTemplateComponent(int quantityNeeded, MaterialCategory category) {
+    this.quantityNeeded = quantityNeeded;
+    this.category = category;
+  }
 
-    public int getQuantityNeeded() {
-        return quantityNeeded;
-    }
+  public int getQuantityNeeded() {
+    return quantityNeeded;
+  }
 
-    public void setQuantityNeeded(int quantityNeeded) {
-        this.quantityNeeded = quantityNeeded;
-    }
+  public void setQuantityNeeded(int quantityNeeded) {
+    this.quantityNeeded = quantityNeeded;
+  }
 
-    public MaterialCategory getCategory() {
-        return category;
-    }
+  public MaterialCategory getCategory() {
+    return category;
+  }
 
-    public void setCategory(MaterialCategory category) {
-        this.category = category;
-    }
+  public void setCategory(MaterialCategory category) {
+    this.category = category;
+  }
 
 }
