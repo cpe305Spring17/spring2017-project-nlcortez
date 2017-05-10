@@ -37,6 +37,9 @@ addons:
   sonarqube:
     organization: "305"
 
+script:
+  ./gradlew clean jacocoTestDebugUnitTestReport sonarqube
+
 before_install:
   - chmod +x gradlew
   - mkdir "$ANDROID_HOME/licenses" || true

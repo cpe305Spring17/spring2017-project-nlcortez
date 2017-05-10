@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.data.BookkeepingContract;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 String unit = mNewUnitEditText.getText().toString();
 
                 addNewCategory(category, unit);
+
+                Toast.makeText(MainActivity.this,
+                               R.string.category_added_toast,
+                               Toast.LENGTH_SHORT).show();
               }
             }
     );

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Bookkeeping Buddy</string>
+    <string name="save_button">Save</string>
+    <string name="category_added_toast">Category Added!</string>
 </resources>
