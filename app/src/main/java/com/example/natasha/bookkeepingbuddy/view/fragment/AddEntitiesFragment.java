@@ -10,17 +10,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.natasha.bookkeepingbuddy.R;
+import com.example.natasha.bookkeepingbuddy.model.MainModel;
+import com.example.natasha.bookkeepingbuddy.presenter.AddEntitiesPresenter;
 import com.example.natasha.bookkeepingbuddy.view.AddMaterialCategoryActivity;
 import com.example.natasha.bookkeepingbuddy.view.MainActivity;
+
+import java.io.Serializable;
 
 /**
  * Created by Natasha on 5/11/2017.
  */
 
-public class AddEntitiesFragment extends Fragment {
+public class AddEntitiesFragment extends Fragment implements Serializable {
+  private AddEntitiesPresenter presenter;
   private Button addCategoryButton;
   private Button addMaterialTemplateButton;
-  private static final String MESSAGE = "DialogMessage";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -37,12 +41,13 @@ public class AddEntitiesFragment extends Fragment {
     addCategoryButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        FragmentManager manager = getFragmentManager();
-        AddMaterialCategoryFragment dialog = AddMaterialCategoryFragment.newInstance("test1", "test2");
-        dialog.show(manager, MESSAGE);
+        //Intent i = AddMaterialCategoryActivity.newIntent(v.getContext(), presenter);
+        //startActivity(i);
       }
     });
 
     return v;
   }
+
+
 }

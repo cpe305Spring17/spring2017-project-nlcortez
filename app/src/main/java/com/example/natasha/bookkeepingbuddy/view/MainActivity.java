@@ -14,26 +14,52 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.natasha.bookkeepingbuddy.R;
+import com.example.natasha.bookkeepingbuddy.model.MainModel;
 import com.example.natasha.bookkeepingbuddy.model.data.BookkeepingContract;
 import com.example.natasha.bookkeepingbuddy.model.data.BookkeepingDbHelper;
+import com.example.natasha.bookkeepingbuddy.presenter.AddEntitiesPresenter;
 import com.example.natasha.bookkeepingbuddy.view.fragment.AddEntitiesFragment;
 
-public class MainActivity extends FragmentActivity {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements Serializable {
+  private MainModel mModel;
+  private AddEntitiesPresenter mPresenter;
+  private Button mBtnAddCategory;
+  private Button mBtnAddMaterialTemplate;
+  private Button mBtnAddMaterialToInventory;
+  private Button mBtnAddProductTemplate;
+  private Button mBtnAddProductToInventory;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    FragmentManager manager = getSupportFragmentManager();
-    Fragment fragment = manager.findFragmentById(R.id.fragment_container);
 
-    if (fragment == null) {
-      fragment = new AddEntitiesFragment();
-      manager.beginTransaction()
-              .add(R.id.fragment_container, fragment)
-              .commit();
-    }
+    mBtnAddCategory = (Button) findViewById(R.id.add_material_cat_button);
+    mBtnAddMaterialTemplate = (Button) findViewById(R.id.add_material_template_button);
+    mBtnAddMaterialToInventory = (Button) findViewById(R.id.add_material_button);
+    mBtnAddProductTemplate = (Button) findViewById(R.id.add_product_template_button);
+    mBtnAddProductToInventory = (Button) findViewById(R.id.add_product_button);
+
+    mBtnAddCategory.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick (View v) {
+        Intent i = new Intent(MainActivity.this, AddMaterialCategoryActivity.class);
+        startActivity(i);
+      }
+    });
+
+    mBtnAddMaterialTemplate.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick (View v) {
+        Intent i = new Intent(MainActivity.this, AddMaterialTemplateActivity.class);
+        startActivity(i);
+      }
+    });
+
   }
+
 
 }

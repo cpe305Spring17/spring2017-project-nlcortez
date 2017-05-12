@@ -17,6 +17,7 @@ public class Material {
     return currentQuantity;
   }
 
+
   public void setCurrentQuantity(int currentQuantity) {
     this.currentQuantity = currentQuantity;
   }

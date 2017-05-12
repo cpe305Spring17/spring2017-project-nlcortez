@@ -48,4 +48,5 @@ public class MaterialTemplate {
   public void setCost(double cost) {
     this.cost = cost;
   }
+
 }

@@ -29,4 +29,9 @@ public class MaterialCategory {
     this.unit = unit;
   }
 
+  @Override
+  public String toString() {
+    return this.name;
+  }
+
 }
