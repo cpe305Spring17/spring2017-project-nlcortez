@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.AddMaterialCategoryActivity" />
-        <activity android:name=".view.AddMaterialTemplateActivity"></activity>
+        <activity android:name=".view.AddMaterialTemplateActivity" />
     </application>
 
 </manifest>
