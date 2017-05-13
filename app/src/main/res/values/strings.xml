@@ -13,6 +13,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Navigation Drawer menu labels -->
+    <string name="nav_overview">Overview</string>
     <string name="nav_material_categories">Material Categories</string>
     <string name="nav_material_templates">Material Templates</string>
     <string name="nav_product_templates">Product Templates</string>
@@ -21,10 +22,12 @@
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
+        <item>Overview</item>
         <item>Material Categories</item>
         <item>Material Templates</item>
         <item>Product Templates</item>
         <item>Material Inventory</item>
         <item>Product Inventory</item>
     </string-array>
+    <string name="title_activity_material_category">MaterialCategoryActivity</string>
 </resources>
