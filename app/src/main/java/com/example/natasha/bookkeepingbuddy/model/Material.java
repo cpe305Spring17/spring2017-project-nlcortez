@@ -17,8 +17,14 @@ public class Material {
     return currentQuantity;
   }
 
-
   public void setCurrentQuantity(int currentQuantity) {
     this.currentQuantity = currentQuantity;
+  }
+
+  public double getPartialCost(int amountUsed) {
+    double percentUsed = (double) amountUsed / (double) template.getMeasuredQuantity();
+    double cost = percentUsed * template.getCost();
+
+    return cost;
   }
 }

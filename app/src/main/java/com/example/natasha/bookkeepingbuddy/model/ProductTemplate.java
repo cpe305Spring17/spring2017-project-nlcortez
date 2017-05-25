@@ -11,9 +11,10 @@ public class ProductTemplate {
   private double price;
   private ArrayList<ProductTemplateComponent> materialsNeeded;
 
-  public ProductTemplate(String productName, double price) {
+  public ProductTemplate(String productName, double price, ArrayList<ProductTemplateComponent> materialsNeeded) {
     this.productName = productName;
     this.price = price;
+    this.materialsNeeded = materialsNeeded;
   }
 
   public String getProductName() {
@@ -30,5 +31,15 @@ public class ProductTemplate {
 
   public void setPrice(double price) {
     this.price = price;
+  }
+
+  public ArrayList<ProductTemplateComponent> getMaterialsNeeded() { return materialsNeeded; }
+
+  public void addComponent(ProductTemplateComponent component) {
+    materialsNeeded.add(component);
+  }
+
+  public void removeComponent(ProductTemplateComponent component) {
+    materialsNeeded.remove(component);
   }
 }
