@@ -1,35 +1,28 @@
-package com.example.natasha.bookkeepingbuddy.materialcategories;
+package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
+import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 
 import java.util.List;
 
 /**
- * Created by Natasha on 5/26/2017.
+ * A placeholder fragment containing a simple view.
  */
+public class MaterialTemplatesFragment extends Fragment implements MaterialTemplatesContract.View {
 
-public class MaterialCategoriesFragment extends Fragment implements MaterialCategoriesContract.View {
-
-  public MaterialCategoriesFragment() {
-
+  public MaterialTemplatesFragment() {
   }
-  public static MaterialCategoriesFragment newInstance() { return new MaterialCategoriesFragment(); }
 
+  public static MaterialTemplatesFragment newInstance() { return new MaterialTemplatesFragment(); }
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,14 +34,14 @@ public class MaterialCategoriesFragment extends Fragment implements MaterialCate
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View rootView;
-    rootView = inflater.inflate(R.layout.fragment_material_categories, container, false);
+    rootView = inflater.inflate(R.layout.fragment_material_templates, container, false);
 
     FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         FragmentManager manager = getFragmentManager();
-        AddMaterialCategoryFragment dialog = AddMaterialCategoryFragment.newInstance("text", "text");
+        AddMaterialTemplateFragment dialog = AddMaterialTemplateFragment.newInstance("text", "text", "text", "text");
         dialog.show(manager,"Category Dialog");
 
       }
@@ -59,12 +52,12 @@ public class MaterialCategoriesFragment extends Fragment implements MaterialCate
   }
 
   @Override
-  public void showMaterialCategories(List<MaterialCategory> categories) {
+  public void showMaterialTemplates(List<MaterialTemplate> categories) {
 
   }
 
   @Override
-  public void showMaterialCategoryDetails(String categoryId) {
+  public void showMaterialTemplateDetails(String categoryId) {
 
   }
 }

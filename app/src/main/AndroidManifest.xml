@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.activity.BaseActivity"
+            android:name=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,13 +19,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.MaterialCategoryActivity"
+            android:name=".materialcategories.MaterialCategoriesActivity"
             android:label="@string/title_activity_material_category"
-            android:parentActivityName=".view.activity.BaseActivity"
+            android:parentActivityName=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.natasha.bookkeepingbuddy.view.activity.BaseActivity"/>
+                android:value="com.example.natasha.bookkeepingbuddy.BaseActivity"/>
+        </activity>
+        <activity
+            android:name=".materialtemplates.MaterialTemplatesActivity"
+            android:label="@string/title_activity_material_template"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

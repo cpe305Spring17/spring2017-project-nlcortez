@@ -29,5 +29,7 @@
         <item>Material Inventory</item>
         <item>Product Inventory</item>
     </string-array>
-    <string name="title_activity_material_category">MaterialCategoryActivity</string>
+    <string name="title_activity_material_category">Material Categories </string>
+    <string name="title_activity_material_template">Material Templates</string>
+    <string name="action_settings">Settings</string>
 </resources>

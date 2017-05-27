@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.materialcategories.MaterialCategoriesActivity;
+import com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesActivity;
 
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +63,8 @@ public class BaseActivity extends AppCompatActivity
       Intent i = new Intent(BaseActivity.this, MaterialCategoriesActivity.class);
       startActivity(i);
     } else if (id == R.id.nav_material_templates) {
-
+      Intent i = new Intent(BaseActivity.this, MaterialTemplatesActivity.class);
+      startActivity(i);
     } else if (id == R.id.nav_material_inventory) {
 
     } else if (id == R.id.nav_product_templates) {
