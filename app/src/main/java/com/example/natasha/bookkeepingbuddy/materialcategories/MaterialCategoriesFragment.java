@@ -19,16 +19,20 @@ import java.util.List;
  */
 
 public class MaterialCategoriesFragment extends Fragment implements MaterialCategoriesContract.View {
+  private MaterialCategoriesContract.UserActionsListener actionsListener;
 
   public MaterialCategoriesFragment() {
 
   }
+
   public static MaterialCategoriesFragment newInstance() { return new MaterialCategoriesFragment(); }
 
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
+    actionsListener = new MaterialCategoriesPresenter();
   }
 
   @Override

@@ -1,5 +1,6 @@
 package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -17,12 +18,20 @@ import java.util.List;
  * A placeholder fragment containing a simple view.
  */
 public class MaterialTemplatesFragment extends Fragment implements MaterialTemplatesContract.View {
+  private MaterialTemplatesContract.UserActionsListener actionsListener;
 
   public MaterialTemplatesFragment() {
   }
 
   public static MaterialTemplatesFragment newInstance() { return new MaterialTemplatesFragment(); }
 
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+
+    super.onCreate(savedInstanceState);
+    actionsListener = new MaterialTemplatesPresenter();
+  }
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -42,7 +51,7 @@ public class MaterialTemplatesFragment extends Fragment implements MaterialTempl
       public void onClick(View view) {
         FragmentManager manager = getFragmentManager();
         AddMaterialTemplateFragment dialog = AddMaterialTemplateFragment.newInstance("text", "text", "text", "text");
-        dialog.show(manager,"Category Dialog");
+        dialog.show(manager,"Template Dialog");
 
       }
     });

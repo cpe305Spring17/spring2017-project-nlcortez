@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.natasha.bookkeepingbuddy.BaseActivity;
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesFragment;
 
 public class MaterialTemplatesActivity extends BaseActivity {
 
