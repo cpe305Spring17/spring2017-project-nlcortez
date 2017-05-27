@@ -14,7 +14,7 @@ public interface MaterialTemplatesContract {
 
     void showMaterialTemplates(List<MaterialTemplate> categories);
 
-    void showMaterialTemplateDetails(String categoryId);
+    void showMaterialTemplateDetails(String templateId);
   }
 
   interface UserActionsListener {
