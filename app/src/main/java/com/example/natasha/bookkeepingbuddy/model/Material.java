@@ -12,7 +12,7 @@ public class Material {
   public Material(MaterialTemplate template, String attribute) {
     this.template = template;
     this.attribute = attribute;
-    this.currentQuantity = currentQuantity;
+    this.currentQuantity = template.getMeasuredQuantity();
   }
 
   public String getAttribute() { return attribute; }

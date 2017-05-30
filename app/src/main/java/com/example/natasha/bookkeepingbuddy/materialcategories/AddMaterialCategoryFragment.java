@@ -17,14 +17,8 @@ public class AddMaterialCategoryFragment extends DialogFragment {
   private static final String ARG_CATEGORY = "category";
   private static final String ARG_UNIT = "unit";
 
-  public static AddMaterialCategoryFragment newInstance(String category, String unit) {
-    Bundle args = new Bundle();
-    args.putSerializable(ARG_CATEGORY, category);
-    args.putSerializable(ARG_UNIT, unit);
-
-    AddMaterialCategoryFragment fragment = new AddMaterialCategoryFragment();
-    fragment.setArguments(args);
-    return fragment;
+  public static AddMaterialCategoryFragment newInstance() {
+    return new AddMaterialCategoryFragment();
   }
 
   @Override

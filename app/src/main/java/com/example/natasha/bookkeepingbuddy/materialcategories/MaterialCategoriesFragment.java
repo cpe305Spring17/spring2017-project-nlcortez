@@ -52,7 +52,7 @@ public class MaterialCategoriesFragment extends Fragment implements MaterialCate
       @Override
       public void onClick(View view) {
         FragmentManager manager = getFragmentManager();
-        AddMaterialCategoryFragment dialog = AddMaterialCategoryFragment.newInstance("text", "text");
+        AddMaterialCategoryFragment dialog = AddMaterialCategoryFragment.newInstance();
         dialog.show(manager,"Category Dialog");
 
       }

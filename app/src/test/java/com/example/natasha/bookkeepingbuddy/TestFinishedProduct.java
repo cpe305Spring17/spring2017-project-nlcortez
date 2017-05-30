@@ -63,7 +63,7 @@ public class TestFinishedProduct {
     ProductTemplate prodTemplate = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
     FinishedProduct product = new FinishedProduct(1.05, prodTemplate, new ArrayList<Material>());
     MaterialTemplate matTemplate = new MaterialTemplate("red heart super saver", new MaterialCategory("yarn", "yards"), 360, 2.99);
-    Material ballOfYarn = new Material(matTemplate);
+    Material ballOfYarn = new Material(matTemplate, "red");
 
     product.addMaterial(ballOfYarn);
 
@@ -74,7 +74,7 @@ public class TestFinishedProduct {
   public void testRemoveMaterial() throws Exception {
     ProductTemplate prodTemplate = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
     MaterialTemplate matTemplate = new MaterialTemplate("red heart super saver", new MaterialCategory("yarn", "yards"), 360, 2.99);
-    Material ballOfYarn = new Material(matTemplate);
+    Material ballOfYarn = new Material(matTemplate, "red");
     ArrayList<Material> materials = new ArrayList<Material>();
 
     materials.add(ballOfYarn);
