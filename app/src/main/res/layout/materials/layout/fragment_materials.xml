@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.natasha.bookkeepingbuddy.materials.MaterialsActivityFragment"
+    tools:context="com.example.natasha.bookkeepingbuddy.materials.MaterialsFragment"
     tools:showIn="@layout/activity_materials">
 
 

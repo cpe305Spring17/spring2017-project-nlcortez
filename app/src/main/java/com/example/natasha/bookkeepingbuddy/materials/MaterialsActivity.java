@@ -1,31 +1,35 @@
 package com.example.natasha.bookkeepingbuddy.materials;
 
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
+import com.example.natasha.bookkeepingbuddy.BaseActivity;
 import com.example.natasha.bookkeepingbuddy.R;
 
-public class MaterialsActivity extends AppCompatActivity {
+public class MaterialsActivity extends BaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_materials);
+    setContentView(R.layout.activity_material_templates);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-      }
-    });
+    if (null == savedInstanceState) {
+      initFragment(MaterialsFragment.newInstance());
+    }
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  private void initFragment(Fragment templatesFragment) {
+    FragmentManager manager = getSupportFragmentManager();
+    FragmentTransaction transaction = manager.beginTransaction();
+    transaction.add(R.id.templatesFrame, templatesFragment);
+    transaction.commit();
   }
 
 }

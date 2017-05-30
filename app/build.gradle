@@ -20,6 +20,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layout/base',
+                    'src/main/res/layout/materialcategories',
+                    'src/main/res/layout/materials',
+                    'src/main/res/layout/materialtemplates',
+                    'src/main/res/layout/producttemplates',
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]
+        }
+    }
     lintOptions {
         abortOnError false
     }

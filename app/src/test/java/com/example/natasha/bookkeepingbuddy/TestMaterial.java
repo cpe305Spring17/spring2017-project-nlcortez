@@ -19,9 +19,29 @@ public class TestMaterial {
   public void testConstructor() throws Exception {
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
-    Material ballOfYarn = new Material(template);
+    Material ballOfYarn = new Material(template, "red");
 
     assertNotNull(template);
+  }
+
+  @Test
+  public void testGetAttribute() throws Exception {
+    String name = "red heart super saver";
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate(name, yarnCategory, 360, 2.99);
+    Material ballOfYarn = new Material(template, "red");
+
+    assertEquals("red", ballOfYarn.getAttribute());
+  }
+
+  @Test
+  public void testSetAttribute() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
+    Material ballOfYarn = new Material(template, "red");
+    ballOfYarn.setAttribute("blue");
+
+    assertEquals("blue", ballOfYarn.getAttribute());
   }
 
   @Test
@@ -29,7 +49,7 @@ public class TestMaterial {
     String name = "red heart super saver";
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     MaterialTemplate template = new MaterialTemplate(name, yarnCategory, 360, 2.99);
-    Material ballOfYarn = new Material(template);
+    Material ballOfYarn = new Material(template, "red");
 
     assertEquals(360, ballOfYarn.getCurrentQuantity());
   }
@@ -38,7 +58,7 @@ public class TestMaterial {
   public void testSetCurrentQuantity() throws Exception {
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
-    Material ballOfYarn = new Material(template);
+    Material ballOfYarn = new Material(template, "red");
     ballOfYarn.setCurrentQuantity(300);
 
     assertEquals(300, ballOfYarn.getCurrentQuantity());
@@ -48,7 +68,7 @@ public class TestMaterial {
   public void testGetPartialCost() throws Exception {
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 300, 3.00);
-    Material ballOfYarn = new Material(template);
+    Material ballOfYarn = new Material(template, "red");
 
     assertEquals(1.00, ballOfYarn.getPartialCost(100), .001);
   }
