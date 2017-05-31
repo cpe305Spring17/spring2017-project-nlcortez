@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface MaterialCategoriesContract {
   interface View {
+    void showAddMaterialCategory();
 
     void showMaterialCategories(List<MaterialCategory> categories);
 
@@ -22,6 +23,8 @@ public interface MaterialCategoriesContract {
     void loadMaterialCategories(boolean forceUpdate);
 
     void addNewMaterialCategory();
+
+    void saveNewMaterialCategory(String category, String unit);
 
     void openMaterialCategoryDetails(@NonNull MaterialCategory category);
   }
