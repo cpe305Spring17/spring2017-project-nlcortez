@@ -1,7 +1,6 @@
 package com.example.natasha.bookkeepingbuddy.materialcategories;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -17,7 +16,7 @@ import java.util.List;
  * Created by Natasha on 5/26/2017.
  */
 
-public class MaterialCategoriesPresenter implements MaterialCategoriesContract.UserActionsListener {
+public class MaterialCategoriesPresenter implements MaterialCategoriesContract.Presenter {
   private final MaterialCategoriesContract.View categoriesView;
   private List<MaterialCategory> materialCategories;
   private DBHelper dbHelper;
@@ -25,13 +24,12 @@ public class MaterialCategoriesPresenter implements MaterialCategoriesContract.U
   private SQLiteDatabase readableDB;
 
   public MaterialCategoriesPresenter(MaterialCategoriesContract.View view,
-                                     List<MaterialCategory> list,
                                      DBHelper helper) {
     categoriesView = view;
-    materialCategories = list;
     dbHelper = helper;
     writable = dbHelper.getWritableDatabase();
     readableDB = dbHelper.getReadableDatabase();
+    materialCategories = getAllMaterialCategories();
   }
 
   @Override
@@ -51,7 +49,7 @@ public class MaterialCategoriesPresenter implements MaterialCategoriesContract.U
   }
 
   @Override
-  public void loadMaterialCategories(boolean forceUpdate) {
+  public void loadMaterialCategories() {
     categoriesView.showMaterialCategories(materialCategories);
   }
 
@@ -60,7 +58,8 @@ public class MaterialCategoriesPresenter implements MaterialCategoriesContract.U
 
   }
 
-  private List<MaterialCategory> getAllMaterialCategories() {
+  @Override
+  public List<MaterialCategory> getAllMaterialCategories() {
     String[] projection = {
             DBContract.MaterialCategoryEntry.COLUMN_NAME,
             DBContract.MaterialCategoryEntry.COLUMN_UNIT
@@ -78,7 +77,7 @@ public class MaterialCategoriesPresenter implements MaterialCategoriesContract.U
 
     List updatedCategories = new ArrayList<MaterialCategory>();
     while(cursor.moveToNext()) {
-      MaterialCategory category = new MaterialCategory(cursor.getString(1), cursor.getString(1));
+      MaterialCategory category = new MaterialCategory(cursor.getString(0), cursor.getString(1));
       updatedCategories.add(category);
     }
     materialCategories = updatedCategories;

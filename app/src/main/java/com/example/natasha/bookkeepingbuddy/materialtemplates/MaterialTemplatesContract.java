@@ -12,15 +12,20 @@ import java.util.List;
 public interface MaterialTemplatesContract {
   interface View {
 
+    void showAddMaterialTemplate();
+
     void showMaterialTemplates(List<MaterialTemplate> categories);
 
     void showMaterialTemplateDetails(String templateId);
   }
 
-  interface UserActionsListener {
+  interface Presenter {
+
     void loadMaterialTemplates(boolean forceUpdate);
 
     void addNewMaterialTemplate();
+
+    void saveNewMaterialTemplate(String category, String template, String quantity, String cost);
 
     void openMaterialTemplateDetails(@NonNull MaterialTemplate category);
   }

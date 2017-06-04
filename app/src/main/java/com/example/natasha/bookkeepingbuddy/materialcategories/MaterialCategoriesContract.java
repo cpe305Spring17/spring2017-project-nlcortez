@@ -19,14 +19,17 @@ public interface MaterialCategoriesContract {
     void showMaterialCategoryDetails(String categoryId);
   }
 
-  interface UserActionsListener {
-    void loadMaterialCategories(boolean forceUpdate);
+  interface Presenter {
+    void loadMaterialCategories();
 
     void addNewMaterialCategory();
 
     void saveNewMaterialCategory(String category, String unit);
 
     void openMaterialCategoryDetails(@NonNull MaterialCategory category);
+
+    List<MaterialCategory> getAllMaterialCategories();
+
   }
 
 }

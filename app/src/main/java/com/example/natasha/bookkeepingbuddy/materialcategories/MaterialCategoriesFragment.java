@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -25,7 +24,7 @@ import java.util.List;
 
 public class MaterialCategoriesFragment extends Fragment implements MaterialCategoriesContract.View,
 AddMaterialCategoryFragment.OnMaterialCategoryListener {
-  private MaterialCategoriesContract.UserActionsListener actionsListener;
+  private MaterialCategoriesContract.Presenter presenter;
 
   private RecyclerView recView;
   private List<MaterialCategory> categoriesList;
@@ -42,11 +41,11 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    dbHelper = new DBHelper(getContext());
-    actionsListener = new MaterialCategoriesPresenter(this, categoriesList, dbHelper);
-    categoriesList = new ArrayList<MaterialCategory>();
-    categoriesList.add(new MaterialCategory("category", "unit"));
+    dbHelper = DBHelper.getInstance(getContext());
+    presenter = new MaterialCategoriesPresenter(this, dbHelper);
+    categoriesList = presenter.getAllMaterialCategories();
     adapter = new MaterialCategoriesAdapter(categoriesList, getContext());
+
   }
 
   @Override
@@ -68,7 +67,7 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        actionsListener.addNewMaterialCategory();
+        presenter.addNewMaterialCategory();
 
       }
     });
@@ -97,6 +96,6 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
   @Override
   public void onCreateMaterialCategory(String category, String unit) {
-    actionsListener.saveNewMaterialCategory(category, unit);
+    presenter.saveNewMaterialCategory(category, unit);
   }
 }
