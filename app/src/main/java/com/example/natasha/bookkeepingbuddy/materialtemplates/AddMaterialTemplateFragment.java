@@ -61,7 +61,7 @@ public class AddMaterialTemplateFragment extends DialogFragment {
     categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         MaterialCategory item = (MaterialCategory) parent.getItemAtPosition(pos);
-        unitText.setText(item.getUnit() + " " + item.getId());
+        unitText.setText(item.getUnit());
       }
       public void onNothingSelected(AdapterView<?> parent) {
       }

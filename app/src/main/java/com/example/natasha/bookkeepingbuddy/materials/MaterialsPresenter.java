@@ -1,7 +1,5 @@
 package com.example.natasha.bookkeepingbuddy.materials;
 
-import android.support.annotation.NonNull;
-
 import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
@@ -40,7 +38,13 @@ public class MaterialsPresenter implements MaterialsContract.Presenter {
   }
 
   @Override
-  public void openMaterialDetails(Material category) {
+  public void updateMaterial(Material material, String additionalAmount) {
+    DBQueries.updateMaterial(material, Integer.parseInt(additionalAmount));
+    loadMaterials();
+  }
 
+  @Override
+  public void openMaterialDetails(Material material) {
+    view.showMaterialDetails(material);
   }
 }

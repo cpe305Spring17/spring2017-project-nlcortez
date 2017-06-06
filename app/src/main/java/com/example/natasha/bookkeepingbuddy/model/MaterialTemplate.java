@@ -62,6 +62,8 @@ public class MaterialTemplate {
 
   public void setId(int id) { this.id = id; }
 
+  public String quantityDescription() { return measuredQuantity + " " + category.getUnit(); }
+
   @Override
   public String toString() {
     return this.name;

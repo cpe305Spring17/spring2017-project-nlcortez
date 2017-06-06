@@ -65,6 +65,7 @@ public final class DBContract {
     public static final String COLUMN_CUR_QUANTITY = "currentQuantity";
     public static final String COLUMN_TEMPLATE = "template";
     public static final String COLUMN_ATTRIBUTE = "attribute";
+    public static final String COLUMN_RUNNING_TOTAL = "runningTotal";
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " +
@@ -72,7 +73,8 @@ public final class DBContract {
                     _ID + " INTEGER PRIMARY KEY," +
                     COLUMN_CUR_QUANTITY + " INT NOT NULL, " +
                     COLUMN_TEMPLATE + " INT REFERENCES MaterialTemplate(id), " +
-                    COLUMN_ATTRIBUTE + " TEXT NOT NULL " +
+                    COLUMN_ATTRIBUTE + " TEXT NOT NULL, " +
+                    COLUMN_RUNNING_TOTAL + " INT NOT NULL " +
                     "); ";
 
     public static final String DROP_TABLE =

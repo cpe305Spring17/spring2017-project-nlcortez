@@ -18,7 +18,7 @@ public interface MaterialsContract {
 
     void showMaterials(List<Material> categories);
 
-    void showMaterialDetails(String materialId);
+    void showMaterialDetails(Material material);
   }
 
   interface Presenter {
@@ -29,7 +29,9 @@ public interface MaterialsContract {
 
     void saveNewMaterial(MaterialTemplate template, String attribute);
 
-    void openMaterialDetails(@NonNull Material category);
+    void updateMaterial(Material material, String additionalAmount);
+
+    void openMaterialDetails(Material material);
   }
 
 }

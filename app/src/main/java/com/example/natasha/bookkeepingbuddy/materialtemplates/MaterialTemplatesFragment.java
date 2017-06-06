@@ -1,5 +1,6 @@
 package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -10,13 +11,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -87,6 +88,56 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   @Override
   public void showMaterialTemplateDetails(String categoryId) {
 
+  }
+
+  private static class MaterialTemplatesAdapter extends RecyclerView.Adapter<MaterialTemplatesAdapter.MaterialTemplatesAdapterHolder> {
+    private List<MaterialTemplate> materialTemplates;
+    private LayoutInflater inflater;
+
+    public MaterialTemplatesAdapter(List<MaterialTemplate> materialTemplates, Context context) {
+      this.inflater = LayoutInflater.from(context);
+      this.materialTemplates = materialTemplates;
+    }
+    @Override
+    public MaterialTemplatesAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      View view = inflater.inflate(R.layout.item_material_template, parent, false);
+
+      return new MaterialTemplatesAdapterHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(MaterialTemplatesAdapterHolder holder, int position) {
+      MaterialTemplate materialTemplate = materialTemplates.get(position);
+
+      holder.name.setText(materialTemplate.getName());
+      holder.category.setText(materialTemplate.getCategory().toString());
+      holder.measuredQuantity.setText(materialTemplate.quantityDescription());
+      holder.cost.setText("$" + Double.toString(materialTemplate.getCost()));
+
+    }
+
+    @Override
+    public int getItemCount() {
+      return materialTemplates.size();
+    }
+
+    public void updateMaterialTemplates(List<MaterialTemplate> materialTemplates) {
+      this.materialTemplates = materialTemplates;
+      notifyDataSetChanged();
+    }
+
+    class MaterialTemplatesAdapterHolder extends  RecyclerView.ViewHolder {
+      private TextView name, category, measuredQuantity, cost;
+
+      public MaterialTemplatesAdapterHolder(View itemView) {
+        super(itemView);
+
+        name = (TextView)itemView.findViewById(R.id.mat_temp_item_name);
+        category = (TextView)itemView.findViewById(R.id.mat_temp_item_cat);
+        measuredQuantity = (TextView)itemView.findViewById(R.id.mat_temp_item_quantity);
+        cost = (TextView)itemView.findViewById(R.id.mat_temp_item_cost);
+      }
+    }
   }
 
   @Override

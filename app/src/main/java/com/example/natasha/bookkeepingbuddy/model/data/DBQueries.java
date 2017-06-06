@@ -174,7 +174,8 @@ public class DBQueries {
             DBContract.MaterialEntry.COLUMN_TEMPLATE,
             DBContract.MaterialEntry._ID,
             DBContract.MaterialEntry.COLUMN_ATTRIBUTE,
-            DBContract.MaterialEntry.COLUMN_CUR_QUANTITY
+            DBContract.MaterialEntry.COLUMN_CUR_QUANTITY,
+            DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL
     };
 
     Cursor cursor = readableDB.query(
@@ -192,7 +193,7 @@ public class DBQueries {
       MaterialTemplate materialTemplate = DBQueries.getMaterialTemplate(cursor.getInt(0));
 
       if (null != materialTemplate) {
-        Material material = new Material(cursor.getInt(1), materialTemplate, cursor.getString(2), cursor.getInt(3));
+        Material material = new Material(cursor.getInt(1), materialTemplate, cursor.getString(2), cursor.getInt(3), cursor.getInt(4));
         updatedMaterials.add(material);
       }
     }
@@ -204,6 +205,7 @@ public class DBQueries {
     values.put(DBContract.MaterialEntry.COLUMN_TEMPLATE, material.getMaterialTemplate().getId());
     values.put(DBContract.MaterialEntry.COLUMN_ATTRIBUTE, material.getAttribute());
     values.put(DBContract.MaterialEntry.COLUMN_CUR_QUANTITY, material.getCurrentQuantity());
+    values.put(DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL, material.getRunningTotal());
 
     long id = writableDB.insert(DBContract.MaterialEntry.TABLE_NAME, null, values);
     material.setId((int) id);
@@ -216,7 +218,8 @@ public class DBQueries {
             DBContract.MaterialEntry.COLUMN_TEMPLATE,
             DBContract.MaterialEntry._ID,
             DBContract.MaterialEntry.COLUMN_ATTRIBUTE,
-            DBContract.MaterialEntry.COLUMN_CUR_QUANTITY
+            DBContract.MaterialEntry.COLUMN_CUR_QUANTITY,
+            DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL
     };
 
     String whereClause = "_ID=?";
@@ -236,11 +239,19 @@ public class DBQueries {
       MaterialTemplate materialTemplate = DBQueries.getMaterialTemplate(cursor.getInt(0));
 
       if (null != materialTemplate) {
-        material = new Material(cursor.getInt(1), materialTemplate, cursor.getString(2), cursor.getInt(3));
+        material = new Material(cursor.getInt(1), materialTemplate, cursor.getString(2), cursor.getInt(3), cursor.getInt(4));
       }
     }
 
     return material;
+  }
+
+  public static void updateMaterial(Material material, int additionalAmount) {
+    ContentValues values = new ContentValues();
+    values.put(DBContract.MaterialEntry.COLUMN_CUR_QUANTITY, material.getCurrentQuantity() + additionalAmount);
+    values.put(DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL, material.getRunningTotal() + additionalAmount);
+
+    writableDB.update(DBContract.MaterialEntry.TABLE_NAME, values, "_ID=" + material.getId(), null);
   }
 
 }

@@ -24,7 +24,6 @@ public class MaterialTemplatesPresenter implements MaterialTemplatesContract.Pre
     materialTemplates = DBQueries.getAllMaterialTemplates();
   }
 
-
   @Override
   public void loadMaterialTemplates() {
     materialTemplates = DBQueries.getAllMaterialTemplates();
