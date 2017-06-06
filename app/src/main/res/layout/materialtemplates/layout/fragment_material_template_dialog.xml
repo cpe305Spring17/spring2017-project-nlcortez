@@ -85,11 +85,11 @@
             tools:layout_editor_absoluteY="8dp" />
 
         <TextView
+            android:id="@+id/mt_unit_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="unit" />
+            android:inputType="text" />
 
     </LinearLayout>
 

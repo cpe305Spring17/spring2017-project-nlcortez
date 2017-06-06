@@ -7,6 +7,7 @@ import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
+import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 
 import java.util.List;
 
@@ -15,33 +16,34 @@ import java.util.List;
  */
 
 public class MaterialTemplatesPresenter implements MaterialTemplatesContract.Presenter {
-  private final MaterialTemplatesContract.View templatesView;
+  private final MaterialTemplatesContract.View view;
   private List<MaterialTemplate> materialTemplates;
 
-  public MaterialTemplatesPresenter(MaterialTemplatesContract.View view,
-                                     List<MaterialTemplate> list) {
-    templatesView = view;
-    materialTemplates = list;
+  public MaterialTemplatesPresenter(MaterialTemplatesContract.View view) {
+    this.view = view;
+    materialTemplates = DBQueries.getAllMaterialTemplates();
   }
 
 
   @Override
-  public void loadMaterialTemplates(boolean forceUpdate) {
-
+  public void loadMaterialTemplates() {
+    materialTemplates = DBQueries.getAllMaterialTemplates();
+    view.showMaterialTemplates(materialTemplates);
   }
 
   @Override
   public void addNewMaterialTemplate() {
-    templatesView.showAddMaterialTemplate();
+    view.showAddMaterialTemplate();
   }
 
   @Override
-  public void saveNewMaterialTemplate(String category, String template, String quantity, String cost) {
-
+  public void saveNewMaterialTemplate(MaterialCategory category, String name, String quantity, String cost) {
+    DBQueries.addMaterialTemplate(new MaterialTemplate(name, category, Integer.parseInt(quantity), Double.parseDouble(cost)));
+    loadMaterialTemplates();
   }
 
   @Override
-  public void openMaterialTemplateDetails(@NonNull MaterialTemplate category) {
+  public void openMaterialTemplateDetails(MaterialTemplate materialTemplate) {
 
   }
 }

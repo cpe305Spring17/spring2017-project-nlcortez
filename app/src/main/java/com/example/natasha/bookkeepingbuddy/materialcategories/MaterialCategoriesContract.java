@@ -28,8 +28,6 @@ public interface MaterialCategoriesContract {
 
     void openMaterialCategoryDetails(@NonNull MaterialCategory category);
 
-    List<MaterialCategory> getAllMaterialCategories();
-
   }
 
 }

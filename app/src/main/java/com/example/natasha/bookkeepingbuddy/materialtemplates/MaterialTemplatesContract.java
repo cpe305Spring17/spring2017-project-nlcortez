@@ -1,6 +1,8 @@
 package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
 import android.support.annotation.NonNull;
+
+import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 
 import java.util.List;
@@ -21,13 +23,13 @@ public interface MaterialTemplatesContract {
 
   interface Presenter {
 
-    void loadMaterialTemplates(boolean forceUpdate);
+    void loadMaterialTemplates();
 
     void addNewMaterialTemplate();
 
-    void saveNewMaterialTemplate(String category, String template, String quantity, String cost);
+    void saveNewMaterialTemplate(MaterialCategory category, String template, String quantity, String cost);
 
-    void openMaterialTemplateDetails(@NonNull MaterialTemplate category);
+    void openMaterialTemplateDetails(MaterialTemplate category);
   }
 
 }

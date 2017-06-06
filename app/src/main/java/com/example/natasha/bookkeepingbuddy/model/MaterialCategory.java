@@ -5,10 +5,17 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class MaterialCategory {
+  private int id = -1;
   private String name;
   private String unit;
 
   public MaterialCategory(String name, String unit) {
+    this.name = name;
+    this.unit = unit;
+  }
+
+  public MaterialCategory(int id, String name, String unit) {
+    this.id = id;
     this.name = name;
     this.unit = unit;
   }
@@ -28,6 +35,10 @@ public class MaterialCategory {
   public void setUnit(String unit) {
     this.unit = unit;
   }
+
+  public int getId() { return id;}
+
+  public void setId(int id) { this.id = id; }
 
   @Override
   public String toString() {

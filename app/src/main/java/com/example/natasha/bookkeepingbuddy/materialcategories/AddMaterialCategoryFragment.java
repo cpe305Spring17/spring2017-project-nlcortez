@@ -22,10 +22,6 @@ import java.io.Serializable;
 public class AddMaterialCategoryFragment extends DialogFragment {
   private OnMaterialCategoryListener callback;
 
-  public static AddMaterialCategoryFragment newInstance() {
-    return new AddMaterialCategoryFragment();
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

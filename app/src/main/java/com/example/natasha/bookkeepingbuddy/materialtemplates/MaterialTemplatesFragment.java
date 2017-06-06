@@ -6,39 +6,40 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.natasha.bookkeepingbuddy.R;
+import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class MaterialTemplatesFragment extends Fragment implements MaterialTemplatesContract.View,
 AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   private MaterialTemplatesContract.Presenter presenter;
+
   private RecyclerView recView;
-  private List<MaterialTemplate> templatesList;
+  private List<MaterialTemplate> materialTemplates;
+  private MaterialTemplatesAdapter adapter;
   private DBHelper dbHelper;
 
   public MaterialTemplatesFragment() {
   }
 
-  public static MaterialTemplatesFragment newInstance() { return new MaterialTemplatesFragment(); }
-
-
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = new MaterialTemplatesPresenter(this, templatesList);
-    templatesList = new ArrayList<MaterialTemplate>();
-    DBHelper.getInstance(this.getContext());
+    adapter = new MaterialTemplatesAdapter(materialTemplates, getContext());
+    dbHelper = DBHelper.getInstance(getContext());
+    presenter = new MaterialTemplatesPresenter(this);
+    presenter.loadMaterialTemplates();
+
   }
 
   @Override
@@ -53,6 +54,10 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
     View rootView;
     rootView = inflater.inflate(R.layout.fragment_material_templates, container, false);
 
+    recView = (RecyclerView)rootView.findViewById(R.id.material_templates_list);
+    recView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+    recView.setAdapter(adapter);
+
     FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -62,7 +67,6 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
     });
 
     return rootView;
-
   }
 
   @Override
@@ -75,8 +79,9 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
 
 
   @Override
-  public void showMaterialTemplates(List<MaterialTemplate> categories) {
-
+  public void showMaterialTemplates(List<MaterialTemplate> materialTemplates) {
+    this.materialTemplates = materialTemplates;
+    adapter.updateMaterialTemplates(this.materialTemplates);
   }
 
   @Override
@@ -85,7 +90,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   }
 
   @Override
-  public void OnCreateMaterialTemplateListener(String category, String template, String quantity, String cost) {
-    presenter.saveNewMaterialTemplate(category, template,quantity,cost);
+  public void OnCreateMaterialTemplateListener(MaterialCategory category, String name, String quantity, String cost) {
+    presenter.saveNewMaterialTemplate(category, name, quantity, cost);
   }
 }

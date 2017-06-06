@@ -10,7 +10,7 @@ import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
  */
 
 public final class DBContract {
-  private static final String KEY_ID = "id";
+  public static final String KEY_ID = "id";
 
   private DBContract() {
   }

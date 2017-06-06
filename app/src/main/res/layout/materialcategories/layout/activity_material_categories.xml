@@ -22,7 +22,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:id="@+id/categoriesFrame"
+        android:id="@+id/mat_cats_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <!--<include layout="@layout/content_material_category"/>-->

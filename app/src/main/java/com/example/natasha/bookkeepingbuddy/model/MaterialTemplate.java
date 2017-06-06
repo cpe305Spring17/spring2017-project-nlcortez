@@ -5,12 +5,21 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class MaterialTemplate {
+  private int id = -1;
   private String name;
   private MaterialCategory category;
   private int measuredQuantity;
   private double cost;
 
   public MaterialTemplate(String name, MaterialCategory category, int measuredQuantity, double cost) {
+    this.name = name;
+    this.category = category;
+    this.measuredQuantity = measuredQuantity;
+    this.cost = cost;
+  }
+
+  public MaterialTemplate(int id, String name, MaterialCategory category, int measuredQuantity, double cost) {
+    this.id = id;
     this.name = name;
     this.category = category;
     this.measuredQuantity = measuredQuantity;
@@ -48,5 +57,15 @@ public class MaterialTemplate {
   public void setCost(double cost) {
     this.cost = cost;
   }
+
+  public int getId() { return id;}
+
+  public void setId(int id) { this.id = id; }
+
+  @Override
+  public String toString() {
+    return this.name;
+  }
+
 
 }

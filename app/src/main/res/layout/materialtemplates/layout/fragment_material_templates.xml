@@ -8,5 +8,13 @@
     tools:context="com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesFragment"
     tools:showIn="@layout/activity_material_templates">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/material_templates_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="?attr/actionBarSize"/>
 
 </android.support.constraint.ConstraintLayout>

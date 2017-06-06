@@ -19,16 +19,16 @@ public class MaterialCategoriesActivity extends BaseActivity {
     setSupportActionBar(toolbar);
 
     if (null == savedInstanceState) {
-      initFragment(MaterialCategoriesFragment.newInstance());
+      initFragment(new MaterialCategoriesFragment());
     }
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
-  private void initFragment(Fragment categoriesFragment) {
+  private void initFragment(Fragment fragment) {
     FragmentManager manager = getSupportFragmentManager();
     FragmentTransaction transaction = manager.beginTransaction();
-    transaction.add(R.id.categoriesFrame, categoriesFragment);
+    transaction.add(R.id.mat_cats_frame, fragment);
     transaction.commit();
   }
 

@@ -27,25 +27,20 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
   private MaterialCategoriesContract.Presenter presenter;
 
   private RecyclerView recView;
-  private List<MaterialCategory> categoriesList;
+  private List<MaterialCategory> materialCategories;
   private MaterialCategoriesAdapter adapter;
   private DBHelper dbHelper;
 
   public MaterialCategoriesFragment() {
-
   }
-
-  public static MaterialCategoriesFragment newInstance() { return new MaterialCategoriesFragment(); }
-
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    adapter = new MaterialCategoriesAdapter(materialCategories, getContext());
     dbHelper = DBHelper.getInstance(getContext());
-    presenter = new MaterialCategoriesPresenter(this, dbHelper);
-    categoriesList = presenter.getAllMaterialCategories();
-    adapter = new MaterialCategoriesAdapter(categoriesList, getContext());
-
+    presenter = new MaterialCategoriesPresenter(this);
+    presenter.loadMaterialCategories();
   }
 
   @Override
@@ -79,14 +74,15 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
   @Override
   public void showAddMaterialCategory() {
     FragmentManager manager = getFragmentManager();
-    AddMaterialCategoryFragment dialog = AddMaterialCategoryFragment.newInstance();
+    AddMaterialCategoryFragment dialog = new AddMaterialCategoryFragment();
     dialog.setTargetFragment(this, 0);
     dialog.show(manager,"Category Dialog");
   }
 
   @Override
-  public void showMaterialCategories(List<MaterialCategory> categories) {
-    adapter.updateMaterialCategories(categories);
+  public void showMaterialCategories(List<MaterialCategory> materialCategories) {
+    this.materialCategories = materialCategories;
+    adapter.updateMaterialCategories(this.materialCategories);
   }
 
   @Override

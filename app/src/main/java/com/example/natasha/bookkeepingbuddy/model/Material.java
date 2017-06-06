@@ -5,6 +5,7 @@ package com.example.natasha.bookkeepingbuddy.model;
  */
 
 public class Material {
+  private int id = -1;
   private int currentQuantity;
   private MaterialTemplate template;
   private String attribute;
@@ -13,6 +14,13 @@ public class Material {
     this.template = template;
     this.attribute = attribute;
     this.currentQuantity = template.getMeasuredQuantity();
+  }
+
+  public Material(int id, MaterialTemplate template, String attribute, int currentQuantity) {
+    this.id = id;
+    this.template = template;
+    this.attribute = attribute;
+    this.currentQuantity = currentQuantity;
   }
 
   public String getAttribute() { return attribute; }
@@ -27,7 +35,11 @@ public class Material {
     this.currentQuantity = currentQuantity;
   }
 
+  public int getId() { return id;}
 
+  public void setId(int id) { this.id = id; }
+
+  public MaterialTemplate getMaterialTemplate() {return template; }
 
   public double getPartialCost(int amountUsed) {
     double percentUsed = (double) amountUsed / (double) template.getMeasuredQuantity();

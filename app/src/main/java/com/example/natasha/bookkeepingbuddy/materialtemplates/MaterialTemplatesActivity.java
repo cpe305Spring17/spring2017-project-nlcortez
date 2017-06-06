@@ -19,7 +19,7 @@ public class MaterialTemplatesActivity extends BaseActivity {
     setSupportActionBar(toolbar);
 
     if (null == savedInstanceState) {
-      initFragment(MaterialTemplatesFragment.newInstance());
+      initFragment(new MaterialTemplatesFragment());
     }
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -28,7 +28,7 @@ public class MaterialTemplatesActivity extends BaseActivity {
   private void initFragment(Fragment templatesFragment) {
     FragmentManager manager = getSupportFragmentManager();
     FragmentTransaction transaction = manager.beginTransaction();
-    transaction.add(R.id.templatesFrame, templatesFragment);
+    transaction.add(R.id.templates_frame, templatesFragment);
     transaction.commit();
   }
 

@@ -14,21 +14,21 @@ public class MaterialsActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_material_templates);
+    setContentView(R.layout.activity_materials);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     if (null == savedInstanceState) {
-      initFragment(MaterialsFragment.newInstance());
+      initFragment(new MaterialsFragment());
     }
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
-  private void initFragment(Fragment templatesFragment) {
+  private void initFragment(Fragment materialsFragment) {
     FragmentManager manager = getSupportFragmentManager();
     FragmentTransaction transaction = manager.beginTransaction();
-    transaction.add(R.id.templatesFrame, templatesFragment);
+    transaction.add(R.id.materials_frame, materialsFragment);
     transaction.commit();
   }
 
