@@ -16,7 +16,7 @@ This application uses the Model-View-Presenter architecture pattern.
 <img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/MVP.png?raw=true">
 
 ## Class Diagram
-<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/ClassDiagram.png?raw=true">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/ClassDiagram2.png?raw=true">
 
 ## Design Patterns 
 ### Singleton 
