@@ -1,6 +1,8 @@
 package com.example.natasha.bookkeepingbuddy;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,17 +13,35 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.materialcategories.MaterialCategoriesActivity;
 import com.example.natasha.bookkeepingbuddy.materials.MaterialsActivity;
 import com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesActivity;
+import com.example.natasha.bookkeepingbuddy.model.Material;
+import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
+import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 import com.example.natasha.bookkeepingbuddy.producttemplates.ProductTemplatesActivity;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.analytics.ecommerce.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+  private PieChart chart;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +49,6 @@ public class BaseActivity extends AppCompatActivity
     setContentView(R.layout.activity_base);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -41,6 +60,8 @@ public class BaseActivity extends AppCompatActivity
     navigationView.setNavigationItemSelectedListener(this);
 
     DBHelper.getInstance(this);
+    chart = (PieChart) findViewById(R.id.chart);
+    updateChart();
   }
 
   @Override
@@ -86,4 +107,41 @@ public class BaseActivity extends AppCompatActivity
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+
+  public void updateChart() {
+    ArrayList<PieEntry> entries = new ArrayList<>();
+    List<MaterialCategory> materialCategories = DBQueries.getAllMaterialCategories();
+    List<Material> materials = DBQueries.getAllMaterials();
+
+    for (int i = 0; i < materialCategories.size(); i++) {
+      MaterialCategory curCategory = materialCategories.get(i);
+      List<Material> remove = new ArrayList<Material>();
+      double sum = 0;
+
+      for (int j = 0; j < materials.size(); j++) {
+        Material material = materials.get(j);
+        if (material.getMaterialTemplate().getCategory().getId() == curCategory.getId()) {
+          sum += ((double)materials.get(j).getRunningTotal() / (double)material.getMaterialTemplate().getMeasuredQuantity() * material.getMaterialTemplate().getCost());
+          remove.add(material);
+        }
+      }
+      entries.add(new PieEntry((float)sum, curCategory.toString()));
+    }
+
+    PieDataSet dataset = new PieDataSet(entries, "material categories");
+    dataset.setColors(ColorTemplate.PASTEL_COLORS);
+    PieData data = new PieData(dataset);
+    chart.setData(data);
+
+    Legend legend = chart.getLegend();
+    legend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+    legend.setTextSize(25);
+
+    Description description = new Description();
+    description.setText("amounts of money spent on each material category to date");
+    chart.setDescription(description);
+    chart.invalidate();
+
+  }
+
 }
