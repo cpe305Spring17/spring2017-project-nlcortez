@@ -13,19 +13,34 @@ An Android app used for assisting “micro-business” owners in the bookkeeping
 
 ## System Architecture 
 This application uses the Model-View-Presenter architecture pattern. 
-![MVP](https://lh3.googleusercontent.com/jYIOMe_zMAf_C01lseQLef6AnAfzwPepPIYB5G4pyAawd0oC9A48pWqYx9SwpvliFUEPIdKU=w1920-h950-rw)
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/MVP.png?raw=true">
 
 ## Class Diagram
-![Class Diagram](https://lh4.googleusercontent.com/PaUt42-SETGca0VKT10vcX8VBzG_jSLHKuiExrCEj-mUgtjDSg_0B4b66kIzm8hvuW-L1wVx=w1920-h950-rw)
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/ClassDiagram.png?raw=true">
 
 ## Design Patterns 
 ### Singleton 
 The singleton pattern is used for the SQLite database, as only one instance of the database is needed for the application. 
 
 ### Observer
-The observer pattern is used to allow for safely removing finished products from the finished product inventory. The finished product is the subject, while the materials associated with it are the observers. When a user requests to delete the finished product, the observers are notified and update their "quantity available" field. After this, the finished product can be safely removed from the finished product inventory 
+The observer pattern is used to allow for safely removing finished products from the finished product inventory. The finished product is the subject, while the materials associated with it are the observers. When a user requests to delete the finished product, the observers are notified and update their "quantity available" field. After this, the finished product can be safely removed from the finished product inventory.
+
+### Command
+Callbacks are used in the DialogFragments so that information inputted into each respective dialog can be  sent back to the presenter. 
+
+### Adapter
+Adapters are used to populate spinners (drop down menus), 
 
 ## Screen Captures
-![Add Material Category](https://lh3.googleusercontent.com/NqqFp_MFMUz6NLot281JBujZ6LlQ0JrZ2eDR6G7MFbxYevznQ4RZ_zofX3o2B-YaLa-lwKbS=w1920-h950-rw)
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/Overview.png?raw=true" width="480">
 
-![Material Categories](https://lh4.googleusercontent.com/HfaLzDN-fg2uqR8hnAmeKLUl5pM8K-YJBmGC30EjRTTr8T9ilQStevypwdhUhaBKL_haKZN1=w1920-h950-rw)
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/MaterialCategories.png?raw=true" width="480"> 
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/AddMaterialCategory2.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/MaterialTemplate.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/AddMaterialTemplate.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/Materials.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/AddMaterial.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/UpdateMaterial.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/ProductTemplates.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/AddProductTemplate.png?raw=true" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/AddProductTemplate2.png?raw=true" width="480">
