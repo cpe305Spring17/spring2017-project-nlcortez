@@ -29,7 +29,8 @@ The observer pattern is used to allow for safely removing finished products from
 Callbacks are used in the DialogFragments so that information inputted into each respective dialog can be  sent back to the presenter. 
 
 ### Adapter
-Adapters are used to populate spinners (drop down menus), 
+Adapters are used to populate drop down menus (spinners) and RecyclerViews.
+
 
 ## Screen Captures
 <img src="https://github.com/cpe305Spring17/spring2017-project-nlcortez/blob/gh-pages/Screenshots/Overview.png?raw=true" width="480">
