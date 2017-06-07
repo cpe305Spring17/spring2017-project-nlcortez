@@ -43,7 +43,7 @@ public class AddMaterialCategoryFragment extends DialogFragment {
 
     return new AlertDialog.Builder(getActivity())
             .setView(v)
-            .setTitle("Add Material")
+            .setTitle("Add Material Category")
             .setPositiveButton("add",new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
                 callback.onCreateMaterialCategory(categoryView.getText().toString(),
