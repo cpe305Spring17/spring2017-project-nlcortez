@@ -54,7 +54,7 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
     rootView = inflater.inflate(R.layout.fragment_materials, container, false);
 
     recView = (RecyclerView) rootView.findViewById(R.id.materials_list);
-    recView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+    recView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
     recView.setAdapter(adapter);
 
     FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);

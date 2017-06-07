@@ -249,6 +249,40 @@ public class DBQueries {
     return material;
   }
 
+  public static Material getMaterialFromCategory(int id) {
+    Material material = null;
+    String[] projection = {
+            DBContract.MaterialEntry.COLUMN_TEMPLATE,
+            DBContract.MaterialEntry._ID,
+            DBContract.MaterialEntry.COLUMN_ATTRIBUTE,
+            DBContract.MaterialEntry.COLUMN_CUR_QUANTITY,
+            DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL
+    };
+
+    String whereClause = "_ID=?";
+    String[] args = {Integer.toString(id)};
+
+    Cursor cursor = readableDB.query(
+            DBContract.MaterialEntry.TABLE_NAME,
+            projection,
+            whereClause,
+            args,
+            null,
+            null,
+            null,
+            null);
+
+    while (cursor.moveToNext()) {
+      MaterialTemplate materialTemplate = DBQueries.getMaterialTemplate(cursor.getInt(0));
+
+      if (null != materialTemplate) {
+        material = new Material(cursor.getInt(1), materialTemplate, cursor.getString(2), cursor.getInt(3), cursor.getInt(4));
+      }
+    }
+
+    return material;
+  }
+
   public static void updateMaterial(Material material, int additionalAmount) {
     ContentValues values = new ContentValues();
     values.put(DBContract.MaterialEntry.COLUMN_CUR_QUANTITY, material.getCurrentQuantity() + additionalAmount);

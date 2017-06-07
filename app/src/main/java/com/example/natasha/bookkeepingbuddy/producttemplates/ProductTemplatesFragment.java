@@ -49,7 +49,7 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
     rootView = inflater.inflate(R.layout.fragment_product_templates, container, false);
 
     recView = (RecyclerView) rootView.findViewById(R.id.prod_temps_list);
-    recView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+    recView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
     recView.setAdapter(adapter);
 
     FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
