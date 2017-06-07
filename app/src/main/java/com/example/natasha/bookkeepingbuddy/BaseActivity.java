@@ -135,10 +135,11 @@ public class BaseActivity extends AppCompatActivity
 
     Legend legend = chart.getLegend();
     legend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-    legend.setTextSize(25);
+    legend.setTextSize(15);
 
     Description description = new Description();
     description.setText("amounts of money spent on each material category to date");
+    description.setTextSize(15);
     chart.setDescription(description);
     chart.invalidate();
 
