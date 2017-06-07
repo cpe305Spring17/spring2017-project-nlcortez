@@ -38,7 +38,6 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
     dbHelper = DBHelper.getInstance(getContext());
     presenter = new MaterialsPresenter(this);
     presenter.loadMaterials();
-
   }
 
   @Override
@@ -143,14 +142,6 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
         name = (TextView) itemView.findViewById(R.id.material_item_name);
         template = (TextView) itemView.findViewById(R.id.material_item_template);
         curQuantity = (TextView) itemView.findViewById(R.id.material_item_quantity);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-
-          @Override
-          public void onClick(View v) {
-            // add edit  dialog
-          }
-        });
       }
     }
   }

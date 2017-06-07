@@ -19,7 +19,6 @@ public class MaterialsPresenter implements MaterialsContract.Presenter {
     materials = DBQueries.getAllMaterials();
   }
 
-
   @Override
   public void loadMaterials() {
     materials = DBQueries.getAllMaterials();

@@ -8,6 +8,10 @@ public class ProductTemplateComponent {
   private int quantityNeeded;
   private MaterialCategory category;
 
+  public ProductTemplateComponent() {
+
+  }
+
   public ProductTemplateComponent(int quantityNeeded, MaterialCategory category) {
     this.quantityNeeded = quantityNeeded;
     this.category = category;

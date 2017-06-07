@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-  public static final int DATABASE_VERSION = 2;
+  public static final int DATABASE_VERSION = 3;
   public static final String DATABASE_NAME = "testdb01.db";
   private static DBHelper instance;
 
@@ -33,6 +33,8 @@ public class DBHelper extends SQLiteOpenHelper {
     db.execSQL(DBContract.MaterialCategoryEntry.CREATE_TABLE);
     db.execSQL(DBContract.MaterialTemplateEntry.CREATE_TABLE);
     db.execSQL(DBContract.MaterialEntry.CREATE_TABLE);
+    db.execSQL(DBContract.ProductTemplateEntry.CREATE_TABLE);
+    db.execSQL(DBContract.ProdTempCompEntry.CREATE_TABLE);
   }
 
   @Override
@@ -40,6 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {
     db.execSQL(DBContract.MaterialCategoryEntry.DROP_TABLE);
     db.execSQL(DBContract.MaterialTemplateEntry.DROP_TABLE);
     db.execSQL(DBContract.MaterialEntry.DROP_TABLE);
+    db.execSQL(DBContract.ProductTemplateEntry.DROP_TABLE);
+    db.execSQL(DBContract.ProdTempCompEntry.DROP_TABLE);
     onCreate(db);
   }
 }

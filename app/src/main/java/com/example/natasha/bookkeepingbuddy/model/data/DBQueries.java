@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
+import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
+import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
+import com.google.android.gms.analytics.ecommerce.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -252,6 +255,96 @@ public class DBQueries {
     values.put(DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL, material.getRunningTotal() + additionalAmount);
 
     writableDB.update(DBContract.MaterialEntry.TABLE_NAME, values, "_ID=" + material.getId(), null);
+  }
+
+  /* ProductTemplateQueries */
+  public static List getAllProductTemplates() {
+    String[] projection = {
+            DBContract.ProductTemplateEntry._ID,
+            DBContract.ProductTemplateEntry.COLUMN_NAME,
+            DBContract.ProductTemplateEntry.COLUMN_PRICE
+    };
+
+    Cursor cursor = readableDB.query(
+            DBContract.ProductTemplateEntry.TABLE_NAME,
+            projection,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null);
+
+    List productTemplates = new ArrayList<ProductTemplate>();
+    while (cursor.moveToNext()) {
+      List<ProductTemplateComponent> components = DBQueries.getProductTemplateComponents(cursor.getInt(0));
+
+      if (null != components) {
+        ProductTemplate productTemplate = new ProductTemplate(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), components);
+        productTemplates.add(productTemplate);
+      }
+    }
+    return productTemplates;
+  }
+
+  public static long addProductTemplate(ProductTemplate productTemplate) {
+    ContentValues values = new ContentValues();
+    values.put(DBContract.ProductTemplateEntry.COLUMN_NAME, productTemplate.getProductName());
+    values.put(DBContract.ProductTemplateEntry.COLUMN_PRICE, productTemplate.getPrice());
+
+    long id = writableDB.insert(DBContract.ProductTemplateEntry.TABLE_NAME, null, values);
+    productTemplate.setId((int) id);
+
+    addProdTempComps(productTemplate.getMaterialsNeeded(), (int) id);
+
+    return id;
+  }
+
+  /* ProductTemplateComponent Queries */
+  public static List<ProductTemplateComponent> getProductTemplateComponents(int id) {
+    List<ProductTemplateComponent> productTemplateComponents = new ArrayList<ProductTemplateComponent>();
+
+    String[] projection = {
+            DBContract.ProdTempCompEntry.COLUMN_CATEGORY,
+            DBContract.ProdTempCompEntry.COLUMN_QUANTITY
+    };
+
+    String whereClause = DBContract.ProdTempCompEntry.COLUMN_TEMP_ID + "=?";
+    String[] args = {Integer.toString(id)};
+
+    Cursor cursor = readableDB.query(
+            DBContract.ProdTempCompEntry.TABLE_NAME,
+            projection,
+            whereClause,
+            args,
+            null,
+            null,
+            null,
+            null);
+
+    while (cursor.moveToNext()) {
+      MaterialCategory materialCategory = DBQueries.getMaterialCategory(cursor.getInt(0));
+
+      if (null != materialCategory) {
+        productTemplateComponents.add(new ProductTemplateComponent(cursor.getInt(1), materialCategory));
+      }
+    }
+
+    return productTemplateComponents;
+  }
+
+  public static void addProdTempComps(List<ProductTemplateComponent> productTemplateComponents, int id) {
+    ContentValues values;
+
+    for (int i = 0; i < productTemplateComponents.size(); i++) {
+      values = new ContentValues();
+      values.put(DBContract.ProdTempCompEntry.COLUMN_TEMP_ID, id);
+      values.put(DBContract.ProdTempCompEntry.COLUMN_CATEGORY, productTemplateComponents.get(i).getCategory().getId());
+      values.put(DBContract.ProdTempCompEntry.COLUMN_QUANTITY, productTemplateComponents.get(i).getQuantityNeeded());
+
+      writableDB.insert(DBContract.ProdTempCompEntry.TABLE_NAME, null, values);
+    }
+
   }
 
 }

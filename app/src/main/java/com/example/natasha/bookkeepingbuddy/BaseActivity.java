@@ -17,6 +17,7 @@ import com.example.natasha.bookkeepingbuddy.materials.MaterialsActivity;
 import com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesActivity;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
+import com.example.natasha.bookkeepingbuddy.producttemplates.ProductTemplatesActivity;
 import com.google.android.gms.analytics.ecommerce.Product;
 
 public class BaseActivity extends AppCompatActivity
@@ -75,7 +76,7 @@ public class BaseActivity extends AppCompatActivity
       Intent i = new Intent(BaseActivity.this, MaterialsActivity.class);
       startActivity(i);
     } else if (id == R.id.nav_product_templates) {
-      Intent i = new Intent(BaseActivity.this, ProductTemplate.class);
+      Intent i = new Intent(BaseActivity.this, ProductTemplatesActivity.class);
       startActivity(i);
     } else if (id == R.id.nav_product_inventory) {
 

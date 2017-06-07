@@ -85,4 +85,46 @@ public final class DBContract {
 
   }
 
+  public static final class ProductTemplateEntry implements BaseColumns {
+    public static final String TABLE_NAME = "ProductTemplate";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_PRICE = "price";
+
+    public static final String CREATE_TABLE =
+            "CREATE TABLE " +
+                    TABLE_NAME + " (" +
+                    _ID + " INTEGER PRIMARY KEY," +
+                    COLUMN_NAME + " TEXT NOT NULL, " +
+                    COLUMN_PRICE + " FLOAT NOT NULL " +
+                    "); ";
+
+    public static final String DROP_TABLE =
+            "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    private ProductTemplateEntry() {
+    }
+  }
+
+  public static final class ProdTempCompEntry implements BaseColumns {
+    public static final String TABLE_NAME = "ProductTemplateComponent";
+    public static final String COLUMN_TEMP_ID = "templateId";
+    public static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_QUANTITY = "quantity";
+
+    public static final String CREATE_TABLE =
+            "CREATE TABLE " +
+                    TABLE_NAME + " (" +
+                    COLUMN_TEMP_ID + " INT REFERENCES ProductTemplate(id)," +
+                    COLUMN_CATEGORY + " INT REFERENCES Category(id), " +
+                    COLUMN_QUANTITY + " INT NOT NULL " +
+                    "); ";
+
+    public static final String DROP_TABLE =
+            "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    private ProdTempCompEntry() {
+    }
+  }
+
+
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 
 public class FinishedProduct {
+  int id;
   private double materialsCost;
   private ArrayList<Material>  materialsUsed;
   private ProductTemplate template;
@@ -35,6 +36,10 @@ public class FinishedProduct {
   public void removeMaterial(Material materialUsed) {
     materialsUsed.remove(materialUsed);
   }
+
+  public int getId() { return id;}
+
+  public void setId(int id) { this.id = id; }
 
   // need to use SQL query
   public void calculateMaterialsCost() {

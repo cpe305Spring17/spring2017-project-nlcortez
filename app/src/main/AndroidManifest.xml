@@ -47,7 +47,11 @@
             android:name=".producttemplates.ProductTemplatesActivity"
             android:label="@string/title_activity_product_templates"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.natasha.bookkeepingbuddy.BaseActivity"/>
         </activity>
+
     </application>
 
 </manifest>
