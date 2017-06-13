@@ -1,8 +1,6 @@
 package com.example.natasha.bookkeepingbuddy;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,29 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
-import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.materialcategories.MaterialCategoriesActivity;
 import com.example.natasha.bookkeepingbuddy.materials.MaterialsActivity;
 import com.example.natasha.bookkeepingbuddy.materialtemplates.MaterialTemplatesActivity;
 import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
-import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 import com.example.natasha.bookkeepingbuddy.producttemplates.ProductTemplatesActivity;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.analytics.ecommerce.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +43,6 @@ public class BaseActivity extends AppCompatActivity
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-    drawer.setDrawerListener(toggle);
     toggle.syncState();
 
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -81,7 +70,6 @@ public class BaseActivity extends AppCompatActivity
     return true;
   }
 
-  @SuppressWarnings("StatementWithEmptyBody")
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
     // Handle navigation view item clicks here.
@@ -99,8 +87,6 @@ public class BaseActivity extends AppCompatActivity
     } else if (id == R.id.nav_product_templates) {
       Intent i = new Intent(BaseActivity.this, ProductTemplatesActivity.class);
       startActivity(i);
-    } else if (id == R.id.nav_product_inventory) {
-
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -141,7 +127,6 @@ public class BaseActivity extends AppCompatActivity
     description.setText("amounts of money spent on each material category to date");
     chart.setDescription(description);
     chart.invalidate();
-
   }
 
 }
