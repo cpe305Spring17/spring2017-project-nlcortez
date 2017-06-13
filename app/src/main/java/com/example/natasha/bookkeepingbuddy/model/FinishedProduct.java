@@ -8,7 +8,6 @@ import java.util.List;
  */
 
 public class FinishedProduct {
-  int id;
   private double materialsCost;
   private List<Material> materialsUsed;
   private ProductTemplate template;
@@ -16,7 +15,6 @@ public class FinishedProduct {
   public FinishedProduct(ProductTemplate template, List<Material> materialsUsed) {
     this.template = template;
     this.materialsUsed = materialsUsed;
-    calculateMaterialsCost();
   }
 
   public double getMaterialsCost() {
@@ -37,13 +35,4 @@ public class FinishedProduct {
     materialsUsed.remove(materialUsed);
   }
 
-  public int getId() { return id;}
-
-  public void setId(int id) { this.id = id; }
-
-  public void calculateMaterialsCost() {
-    double cost = 0.0;
-
-    materialsCost = cost;
-  }
 }

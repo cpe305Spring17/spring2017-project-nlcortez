@@ -21,6 +21,13 @@ public class TestMaterialCategory {
   }
 
   @Test
+  public void testConstructorWithId() throws Exception {
+    MaterialCategory category = new MaterialCategory(1, "yarn", "yards");
+
+    assertNotNull(category);
+  }
+
+  @Test
   public void testGetName() throws Exception {
     String name = "yarn";
     MaterialCategory category = new MaterialCategory(name, "yards");
@@ -53,4 +60,29 @@ public class TestMaterialCategory {
 
     assertEquals(unit, category.getUnit());
   }
+
+  @Test
+  public void testGetId() throws Exception {
+    String unit = "yards";
+    MaterialCategory category = new MaterialCategory(7, "yarn", unit);
+
+    assertEquals(7, category.getId());
+  }
+
+  @Test
+  public void testSetId() throws Exception {
+    MaterialCategory category = new MaterialCategory("thread", "feet");
+    category.setId(6);
+
+    assertEquals(6, category.getId());
+  }
+
+  @Test
+  public void testToString() throws Exception {
+    MaterialCategory category = new MaterialCategory("thread", "feet");
+    category.setId(6);
+
+    assertEquals("thread", category.toString());
+  }
+
 }

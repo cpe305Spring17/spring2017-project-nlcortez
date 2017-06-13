@@ -22,6 +22,13 @@ public class TestMaterialTemplate {
     assertNotNull(template);
   }
 
+  @Test
+  public void testConstructorWithId() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate(1, "red heart super saver", yarnCategory, 360, 2.99);
+
+    assertNotNull(template);
+  }
 
   @Test
   public void testGetName() throws Exception {
@@ -95,6 +102,40 @@ public class TestMaterialTemplate {
     template.setCost(2.50);
 
     assertEquals(2.50, template.getCost(), 0.001);
+  }
+
+  @Test
+  public void testGetId() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate(7, "red heart super saver", yarnCategory, 360, 2.99);
+
+    assertEquals(7, template.getId());
+  }
+
+  @Test
+  public void testSetId() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("DNC embroidery", yarnCategory, 360, 2.99);
+
+    template.setId(8);
+
+    assertEquals(8, template.getId());
+  }
+
+  @Test
+  public void testQuantityDescription() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("DNC embroidery", yarnCategory, 360, 2.99);
+
+    assertEquals("360 yards", template.quantityDescription());
+  }
+
+  @Test
+  public void testToString() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("DNC embroidery", yarnCategory, 360, 2.99);
+
+    assertEquals("DNC embroidery", template.toString());
   }
 
 

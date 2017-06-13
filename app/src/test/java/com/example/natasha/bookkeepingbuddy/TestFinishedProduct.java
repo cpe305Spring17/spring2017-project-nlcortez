@@ -25,7 +25,7 @@ public class TestFinishedProduct {
   @Test
   public void testConstructor() throws Exception {
     ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
-    FinishedProduct product = new FinishedProduct(1.05, template, new ArrayList<Material>());
+    FinishedProduct product = new FinishedProduct(template, new ArrayList<Material>());
     assertNotNull(template);
   }
 
@@ -33,7 +33,7 @@ public class TestFinishedProduct {
   @Test
   public void testGetMaterialsCost() throws Exception {
     ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
-    FinishedProduct product = new FinishedProduct(1.05, template, new ArrayList<Material>());
+    FinishedProduct product = new FinishedProduct(template, new ArrayList<Material>());
 
     assertEquals(0.0, product.getMaterialsCost(), 0.001);
   }
@@ -41,7 +41,7 @@ public class TestFinishedProduct {
   @Test
   public void testSetMaterialsCost() throws Exception {
     ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
-    FinishedProduct product = new FinishedProduct(1.05, template, new ArrayList<Material>());
+    FinishedProduct product = new FinishedProduct(template, new ArrayList<Material>());
 
     product.setMaterialsCost(1.50);
 
@@ -53,7 +53,7 @@ public class TestFinishedProduct {
     ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
     ArrayList<Material> materials = new ArrayList<Material>();
 
-    FinishedProduct product = new FinishedProduct(1.05, template, materials);
+    FinishedProduct product = new FinishedProduct(template, materials);
 
     assertEquals(materials, product.getMaterialsUsed());
   }
@@ -61,7 +61,7 @@ public class TestFinishedProduct {
   @Test
   public void testAddMaterial() throws Exception {
     ProductTemplate prodTemplate = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
-    FinishedProduct product = new FinishedProduct(1.05, prodTemplate, new ArrayList<Material>());
+    FinishedProduct product = new FinishedProduct(prodTemplate, new ArrayList<Material>());
     MaterialTemplate matTemplate = new MaterialTemplate("red heart super saver", new MaterialCategory("yarn", "yards"), 360, 2.99);
     Material ballOfYarn = new Material(matTemplate, "red");
 
@@ -79,7 +79,7 @@ public class TestFinishedProduct {
 
     materials.add(ballOfYarn);
 
-    FinishedProduct product = new FinishedProduct(1.05, prodTemplate, materials);
+    FinishedProduct product = new FinishedProduct(prodTemplate, materials);
 
     product.removeMaterial(ballOfYarn);
 

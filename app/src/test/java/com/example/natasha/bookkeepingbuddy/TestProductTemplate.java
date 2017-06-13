@@ -6,12 +6,11 @@ import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -27,6 +26,16 @@ public class TestProductTemplate {
 
     assertNotNull(template);
   }
+
+  @Test
+  public void testConstructorWithId() throws Exception {
+    ArrayList<ProductTemplateComponent> materialsNeeded = new ArrayList<ProductTemplateComponent>();
+
+    ProductTemplate template = new ProductTemplate(3, "small bear", 18.50, new ArrayList<ProductTemplateComponent>());
+
+    assertNotNull(template);
+  }
+
 
   @Test
   public void testGetProductName() throws Exception {
@@ -56,6 +65,34 @@ public class TestProductTemplate {
     template.setPrice(19.00);
 
     assertEquals(19.00, template.getPrice(), 0.001);
+  }
+
+  @Test
+  public void testGetId() throws Exception {
+    ProductTemplate template = new ProductTemplate(6, "small bear", 18.50, new ArrayList<ProductTemplateComponent>());
+
+    assertEquals(6, template.getId());
+  }
+
+  @Test
+  public void testSetId() throws Exception {
+    ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
+    template.setId(5);
+
+    assertEquals(5, template.getId());
+  }
+
+  @Test
+  public void testCategoriesText() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    ProductTemplateComponent yarnComponent = new ProductTemplateComponent(60, yarnCategory);
+    ArrayList<ProductTemplateComponent> materialsNeeded = new ArrayList<>();
+
+    materialsNeeded.add(yarnComponent);
+
+    ProductTemplate template = new ProductTemplate("small bear", 18.50, materialsNeeded);
+
+    assertEquals("materials needed: yarn (60 yards) ", template.categoriesText());
   }
 
   @Test
