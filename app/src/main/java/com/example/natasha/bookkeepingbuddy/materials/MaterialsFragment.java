@@ -28,11 +28,8 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    DBHelper dbHelper;
-
     super.onCreate(savedInstanceState);
     adapter = new MaterialsAdapter(materials, getContext());
-    dbHelper = DBHelper.getInstance(getContext());
     presenter = new MaterialsPresenter(this);
     presenter.loadMaterials();
   }

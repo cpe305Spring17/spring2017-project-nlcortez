@@ -49,6 +49,14 @@ public class TestFinishedProduct {
   }
 
   @Test
+  public void testGetTemplate() throws Exception {
+    ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
+    FinishedProduct product = new FinishedProduct(template, new ArrayList<Material>());
+
+    assertEquals(template, product.getTemplate());
+  }
+
+  @Test
   public void testGetMaterialsUsed() throws Exception {
     ProductTemplate template = new ProductTemplate("small bear", 18.50, new ArrayList<ProductTemplateComponent>());
     ArrayList<Material> materials = new ArrayList<Material>();

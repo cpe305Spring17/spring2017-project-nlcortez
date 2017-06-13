@@ -1,6 +1,5 @@
 package com.example.natasha.bookkeepingbuddy.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +32,10 @@ public class FinishedProduct {
 
   public void removeMaterial(Material materialUsed) {
     materialsUsed.remove(materialUsed);
+  }
+
+  public ProductTemplate getTemplate() {
+    return template;
   }
 
 }

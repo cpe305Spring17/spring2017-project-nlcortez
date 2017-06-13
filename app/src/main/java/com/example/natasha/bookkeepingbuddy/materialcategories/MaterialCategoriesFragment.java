@@ -32,11 +32,8 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    DBHelper dbHelper;
-
-    super.onCreate(savedInstanceState);
+   super.onCreate(savedInstanceState);
     adapter = new MaterialCategoriesAdapter(materialCategories, getContext());
-    dbHelper = DBHelper.getInstance(getContext());
     presenter = new MaterialCategoriesPresenter(this);
     presenter.loadMaterialCategories();
   }

@@ -53,8 +53,9 @@ public class AddMaterialTemplateFragment extends DialogFragment {
     final TextView unitText = (TextView) v.findViewById(R.id.mt_unit_text_view);
 
     List<MaterialCategory> materialCategories = DBQueries.getAllMaterialCategories();
-    ArrayAdapter<MaterialCategory> adapter = new ArrayAdapter<MaterialCategory>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, materialCategories);
+    ArrayAdapter<MaterialCategory> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, materialCategories);
     categorySpinner.setAdapter(adapter);
+
     categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         MaterialCategory item = (MaterialCategory) parent.getItemAtPosition(pos);

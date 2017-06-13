@@ -15,14 +15,19 @@ import static org.junit.Assert.assertNotNull;
  */
 
 public class TestProductTemplateComponent {
+
+  @Test
+  public void testEmptyConstructor() throws Exception {
+    ProductTemplateComponent component = new ProductTemplateComponent();
+    assertNotNull(component);
+  }
+
   @Test
   public void testConstructor() throws Exception {
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     ProductTemplateComponent component = new ProductTemplateComponent(60, yarnCategory);
-
     assertNotNull(component);
   }
-
 
   @Test
   public void testGetQuantityNeeded() throws Exception {

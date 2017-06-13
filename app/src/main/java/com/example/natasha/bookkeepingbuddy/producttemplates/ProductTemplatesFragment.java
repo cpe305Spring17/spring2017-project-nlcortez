@@ -31,11 +31,8 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    DBHelper dbHelper;
-
     super.onCreate(savedInstanceState);
     adapter = new ProductTemplatesAdapter(productTemplates, getContext());
-    dbHelper = DBHelper.getInstance(getContext());
     presenter = new ProductTemplatesPresenter(this);
     presenter.loadProductTemplates();
   }

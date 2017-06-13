@@ -30,7 +30,7 @@ public final class DBContract {
                     "); ";
 
     public static final String DROP_TABLE =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            DBContract.DROP_TABLE + TABLE_NAME;
 
     private MaterialCategoryEntry() {
     }
@@ -54,7 +54,7 @@ public final class DBContract {
                     "); ";
 
     public static final String DROP_TABLE =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            DBContract.DROP_TABLE + TABLE_NAME;
 
     private MaterialTemplateEntry() {
     }
@@ -79,7 +79,7 @@ public final class DBContract {
                     "); ";
 
     public static final String DROP_TABLE =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            DBContract.DROP_TABLE + TABLE_NAME;
 
     private MaterialEntry() {
     }
@@ -100,7 +100,7 @@ public final class DBContract {
                     "); ";
 
     public static final String DROP_TABLE =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            DBContract.DROP_TABLE + TABLE_NAME;
 
     private ProductTemplateEntry() {
     }
@@ -121,7 +121,7 @@ public final class DBContract {
                     "); ";
 
     public static final String DROP_TABLE =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            DBContract.DROP_TABLE + TABLE_NAME;
 
     private ProdTempCompEntry() {
     }

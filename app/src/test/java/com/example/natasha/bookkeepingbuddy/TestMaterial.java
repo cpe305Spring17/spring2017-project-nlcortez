@@ -132,4 +132,30 @@ public class TestMaterial {
     assertEquals(5, ballOfYarn.getId());
   }
 
+  @Test
+  public void testGetMaterialTemplate() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
+    Material ballOfYarn = new Material(1, template, "red", 200, 360);
+
+    assertEquals(template, ballOfYarn.getMaterialTemplate());
+  }
+
+  @Test
+  public void testCurQuantityText() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
+    Material ballOfYarn = new Material(1, template, "red", 200, 360);
+
+    assertEquals("200 yards remaining", ballOfYarn.curQuantityText());
+  }
+
+  @Test
+  public void testRunningTotalText() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialTemplate template = new MaterialTemplate("red heart super saver", yarnCategory, 360, 2.99);
+    Material ballOfYarn = new Material(1, template, "red", 200, 360);
+
+    assertEquals("360 yards obtained", ballOfYarn.runningTotalText());
+  }
 }

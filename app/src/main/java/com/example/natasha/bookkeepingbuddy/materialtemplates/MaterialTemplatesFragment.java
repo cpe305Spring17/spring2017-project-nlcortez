@@ -28,16 +28,10 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   private List<MaterialTemplate> materialTemplates;
   private MaterialTemplatesAdapter adapter;
 
-  public MaterialTemplatesFragment() {
-  }
-
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    DBHelper dbHelper;
-
     super.onCreate(savedInstanceState);
     adapter = new MaterialTemplatesAdapter(materialTemplates, getContext());
-    dbHelper = DBHelper.getInstance(getContext());
     presenter = new MaterialTemplatesPresenter(this);
     presenter.loadMaterialTemplates();
   }

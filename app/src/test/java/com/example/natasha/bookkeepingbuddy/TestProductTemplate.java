@@ -96,6 +96,22 @@ public class TestProductTemplate {
   }
 
   @Test
+  public void testCategoriesTextElseBlock() throws Exception {
+    MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
+    MaterialCategory eyesCategory = new MaterialCategory("eyes", "eyes");
+    ProductTemplateComponent yarnComponent = new ProductTemplateComponent(60, yarnCategory);
+    ProductTemplateComponent eyesComponent = new ProductTemplateComponent(2, eyesCategory);
+    ArrayList<ProductTemplateComponent> materialsNeeded = new ArrayList<>();
+
+    materialsNeeded.add(yarnComponent);
+    materialsNeeded.add(eyesComponent);
+
+    ProductTemplate template = new ProductTemplate("small bear", 18.50, materialsNeeded);
+
+    assertEquals("materials needed: yarn (60 yards), eyes (2 eyes) ", template.categoriesText());
+  }
+
+  @Test
   public void testGetArrayList() throws Exception {
     MaterialCategory yarnCategory = new MaterialCategory("yarn", "yards");
     ProductTemplateComponent yarnComponent = new ProductTemplateComponent(60, yarnCategory);
