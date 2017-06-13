@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
 import java.util.List;
 
@@ -25,9 +24,6 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
 
   private List<ProductTemplate> productTemplates;
   private ProductTemplatesFragment.ProductTemplatesAdapter adapter;
-
-  public ProductTemplatesFragment() {
-  }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
 import java.util.List;
 

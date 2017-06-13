@@ -1,10 +1,10 @@
 package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,13 +16,12 @@ import android.widget.TextView;
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
 import java.util.List;
 
 
 public class MaterialTemplatesFragment extends Fragment implements MaterialTemplatesContract.View,
-AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
+        AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   private MaterialTemplatesContract.Presenter presenter;
 
   private List<MaterialTemplate> materialTemplates;
@@ -50,7 +49,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
 
     rootView = inflater.inflate(R.layout.fragment_material_templates, container, false);
 
-    recView = (RecyclerView)rootView.findViewById(R.id.material_templates_list);
+    recView = (RecyclerView) rootView.findViewById(R.id.material_templates_list);
     recView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
     recView.setAdapter(adapter);
 
@@ -70,7 +69,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
     FragmentManager manager = getFragmentManager();
     AddMaterialTemplateFragment dialog = AddMaterialTemplateFragment.newInstance();
     dialog.setTargetFragment(this, 0);
-    dialog.show(manager,"Template Dialog");
+    dialog.show(manager, "Template Dialog");
   }
 
 
@@ -93,6 +92,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
       this.inflater = LayoutInflater.from(context);
       this.materialTemplates = materialTemplates;
     }
+
     @Override
     public MaterialTemplatesAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       View view = inflater.inflate(R.layout.item_material_template, parent, false);
@@ -121,7 +121,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
       notifyDataSetChanged();
     }
 
-    class MaterialTemplatesAdapterHolder extends  RecyclerView.ViewHolder {
+    class MaterialTemplatesAdapterHolder extends RecyclerView.ViewHolder {
       private TextView name;
       private TextView category;
       private TextView measuredQuantity;
@@ -130,10 +130,10 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
       public MaterialTemplatesAdapterHolder(View itemView) {
         super(itemView);
 
-        name = (TextView)itemView.findViewById(R.id.mat_temp_item_name);
-        category = (TextView)itemView.findViewById(R.id.mat_temp_item_cat);
-        measuredQuantity = (TextView)itemView.findViewById(R.id.mat_temp_item_quantity);
-        cost = (TextView)itemView.findViewById(R.id.mat_temp_item_cost);
+        name = (TextView) itemView.findViewById(R.id.mat_temp_item_name);
+        category = (TextView) itemView.findViewById(R.id.mat_temp_item_cat);
+        measuredQuantity = (TextView) itemView.findViewById(R.id.mat_temp_item_quantity);
+        cost = (TextView) itemView.findViewById(R.id.mat_temp_item_cost);
       }
     }
   }

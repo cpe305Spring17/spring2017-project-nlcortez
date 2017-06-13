@@ -120,6 +120,7 @@ public class BaseActivity extends AppCompatActivity
     chart.setData(data);
 
     Legend legend = chart.getLegend();
+    legend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
     legend.setTextSize(25);
 
     Description description = new Description();

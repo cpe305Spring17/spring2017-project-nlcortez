@@ -1,10 +1,10 @@
 package com.example.natasha.bookkeepingbuddy.materialcategories;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ import java.util.List;
  */
 
 public class MaterialCategoriesFragment extends Fragment implements MaterialCategoriesContract.View,
-AddMaterialCategoryFragment.OnMaterialCategoryListener {
+        AddMaterialCategoryFragment.OnMaterialCategoryListener {
   private MaterialCategoriesContract.Presenter presenter;
 
   private List<MaterialCategory> materialCategories;
@@ -32,7 +31,7 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-   super.onCreate(savedInstanceState);
+    super.onCreate(savedInstanceState);
     adapter = new MaterialCategoriesAdapter(materialCategories, getContext());
     presenter = new MaterialCategoriesPresenter(this);
     presenter.loadMaterialCategories();
@@ -51,7 +50,7 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
     rootView = inflater.inflate(R.layout.fragment_material_categories, container, false);
 
-    recView = (RecyclerView)rootView.findViewById(R.id.material_categories_list);
+    recView = (RecyclerView) rootView.findViewById(R.id.material_categories_list);
     recView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
     recView.setAdapter(adapter);
 
@@ -73,7 +72,7 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
     FragmentManager manager = getFragmentManager();
     AddMaterialCategoryFragment dialog = new AddMaterialCategoryFragment();
     dialog.setTargetFragment(this, 0);
-    dialog.show(manager,"Category Dialog");
+    dialog.show(manager, "Category Dialog");
   }
 
   @Override
@@ -95,6 +94,7 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
       this.inflater = LayoutInflater.from(context);
       this.materialCategories = materialCategories;
     }
+
     @Override
     public MaterialCategoriesAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       View view = inflater.inflate(R.layout.item_material_category, parent, false);
@@ -128,8 +128,8 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
       public MaterialCategoriesAdapterHolder(View itemView) {
         super(itemView);
 
-        category = (TextView)itemView.findViewById(R.id.mat_cat_category);
-        unit = (TextView)itemView.findViewById(R.id.mat_cat_unit);
+        category = (TextView) itemView.findViewById(R.id.mat_cat_category);
+        unit = (TextView) itemView.findViewById(R.id.mat_cat_unit);
       }
     }
   }
