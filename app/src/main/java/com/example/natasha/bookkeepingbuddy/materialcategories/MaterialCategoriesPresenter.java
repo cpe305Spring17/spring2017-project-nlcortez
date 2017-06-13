@@ -1,16 +1,8 @@
 package com.example.natasha.bookkeepingbuddy.materialcategories;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
-
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
-import com.example.natasha.bookkeepingbuddy.model.data.DBContract;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +37,7 @@ public class MaterialCategoriesPresenter implements MaterialCategoriesContract.P
 
   @Override
   public void openMaterialCategoryDetails(@NonNull MaterialCategory category) {
-
+    // TO-DO
   }
 
 }

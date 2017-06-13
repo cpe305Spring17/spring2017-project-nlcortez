@@ -25,22 +25,21 @@ public class MaterialTemplatesFragment extends Fragment implements MaterialTempl
 AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   private MaterialTemplatesContract.Presenter presenter;
 
-  private RecyclerView recView;
   private List<MaterialTemplate> materialTemplates;
   private MaterialTemplatesAdapter adapter;
-  private DBHelper dbHelper;
 
   public MaterialTemplatesFragment() {
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    DBHelper dbHelper;
+
     super.onCreate(savedInstanceState);
     adapter = new MaterialTemplatesAdapter(materialTemplates, getContext());
     dbHelper = DBHelper.getInstance(getContext());
     presenter = new MaterialTemplatesPresenter(this);
     presenter.loadMaterialTemplates();
-
   }
 
   @Override
@@ -53,6 +52,8 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View rootView;
+    RecyclerView recView;
+
     rootView = inflater.inflate(R.layout.fragment_material_templates, container, false);
 
     recView = (RecyclerView)rootView.findViewById(R.id.material_templates_list);
@@ -87,7 +88,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
 
   @Override
   public void showMaterialTemplateDetails(String categoryId) {
-
+    // TO-DO
   }
 
   private static class MaterialTemplatesAdapter extends RecyclerView.Adapter<MaterialTemplatesAdapter.MaterialTemplatesAdapterHolder> {
@@ -127,7 +128,10 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
     }
 
     class MaterialTemplatesAdapterHolder extends  RecyclerView.ViewHolder {
-      private TextView name, category, measuredQuantity, cost;
+      private TextView name;
+      private TextView category;
+      private TextView measuredQuantity;
+      private TextView cost;
 
       public MaterialTemplatesAdapterHolder(View itemView) {
         super(itemView);
@@ -141,7 +145,7 @@ AddMaterialTemplateFragment.OnCreateMaterialTemplateListener {
   }
 
   @Override
-  public void OnCreateMaterialTemplateListener(MaterialCategory category, String name, String quantity, String cost) {
+  public void onCreateMaterialTemplate(MaterialCategory category, String name, String quantity, String cost) {
     presenter.saveNewMaterialTemplate(category, name, quantity, cost);
   }
 }

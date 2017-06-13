@@ -8,12 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.materialtemplates.AddMaterialTemplateFragment;
-import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
-
-import java.io.Serializable;
 
 /**
  * Created by Natasha on 5/12/2017.

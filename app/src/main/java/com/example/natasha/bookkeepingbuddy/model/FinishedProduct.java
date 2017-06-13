@@ -1,7 +1,7 @@
 package com.example.natasha.bookkeepingbuddy.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Natasha on 4/21/2017.
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class FinishedProduct {
   int id;
   private double materialsCost;
-  private ArrayList<Material>  materialsUsed;
+  private List<Material> materialsUsed;
   private ProductTemplate template;
 
-  public FinishedProduct(double materialsCost, ProductTemplate template, ArrayList<Material> materialsUsed) {
+  public FinishedProduct(ProductTemplate template, List<Material> materialsUsed) {
     this.template = template;
     this.materialsUsed = materialsUsed;
     calculateMaterialsCost();
@@ -27,7 +27,7 @@ public class FinishedProduct {
     this.materialsCost = materialsCost;
   }
 
-  public ArrayList<Material> getMaterialsUsed() { return materialsUsed; }
+  public List<Material> getMaterialsUsed() { return materialsUsed; }
 
   public void addMaterial(Material materialUsed) {
     materialsUsed.add(materialUsed);
@@ -41,7 +41,6 @@ public class FinishedProduct {
 
   public void setId(int id) { this.id = id; }
 
-  // need to use SQL query
   public void calculateMaterialsCost() {
     double cost = 0.0;
 

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,12 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.materials.EditMaterialFragment;
-import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
-import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 
@@ -39,7 +34,6 @@ import java.util.List;
 
 public class AddProductTemplateFragment extends DialogFragment {
   private OnCreateProductTemplateListener callback;
-  private RecyclerView recView;
   private ProdTempCompAdapter adapter;
   private List<ProductTemplateComponent> productTemplateComponents;
 
@@ -51,7 +45,7 @@ public class AddProductTemplateFragment extends DialogFragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    productTemplateComponents = new ArrayList<ProductTemplateComponent>();
+    productTemplateComponents = new ArrayList<>();
 
     try {
       callback = (OnCreateProductTemplateListener) getTargetFragment();
@@ -62,6 +56,7 @@ public class AddProductTemplateFragment extends DialogFragment {
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
+    RecyclerView recView;
     View v = LayoutInflater.from(getActivity())
             .inflate(R.layout.fragment_prod_temp_dialog, null);
 
@@ -90,7 +85,7 @@ public class AddProductTemplateFragment extends DialogFragment {
             .setTitle("Add Product Template")
             .setPositiveButton("add",new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
-                callback.OnCreateProductTemplateListener(nameView.getText().toString(),
+                callback.onCreateProductTemplate(nameView.getText().toString(),
                         priceView.getText().toString(),
                         adapter.getUpdatedList());
               }
@@ -108,7 +103,7 @@ public class AddProductTemplateFragment extends DialogFragment {
       this.productTemplateComponents = productTemplateComponents;
 
       List<MaterialCategory> materialCategories = DBQueries.getAllMaterialCategories();
-      categoryAdapter = new ArrayAdapter<MaterialCategory>(context, android.R.layout.simple_spinner_dropdown_item, materialCategories);
+      categoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, materialCategories);
       categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
@@ -124,7 +119,7 @@ public class AddProductTemplateFragment extends DialogFragment {
       final ProductTemplateComponent productTemplateComponent = productTemplateComponents.get(position);
 
       holder.editTextListener.updatePosition(position);
-      holder.quantity.setText(productTemplateComponent.getQuantityNeeded() + "");
+      holder.quantity.setText(Integer.toString(productTemplateComponent.getQuantityNeeded()));
       holder.category.setAdapter(categoryAdapter);
 
       holder.category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -133,7 +128,9 @@ public class AddProductTemplateFragment extends DialogFragment {
           holder.unit.setText(item.getUnit());
           productTemplateComponent.setCategory(item);
         }
+        @Override
         public void onNothingSelected(AdapterView<?> parent) {
+          // do nothing
         }
       });
 
@@ -158,14 +155,12 @@ public class AddProductTemplateFragment extends DialogFragment {
 
     public List<ProductTemplateComponent> getUpdatedList() {
       List<ProductTemplateComponent> retList = productTemplateComponents;
-      List<ProductTemplateComponent> removeList = new ArrayList<ProductTemplateComponent>();
+      List<ProductTemplateComponent> removeList = new ArrayList<>();
 
       for (int i = 0; i < productTemplateComponents.size(); i++) {
         ProductTemplateComponent component = productTemplateComponents.get(i);
         if (component.getQuantityNeeded() == 0)
           removeList.add(component);
-        else
-          System.out.println("CATEGORY IS " + component.getCategory().toString() + " AND AMOUNT IS " + component.getQuantityNeeded());
       }
       retList.removeAll(removeList);
       return retList;
@@ -199,6 +194,7 @@ public class AddProductTemplateFragment extends DialogFragment {
 
       @Override
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // do nothing
       }
 
       @Override
@@ -210,6 +206,7 @@ public class AddProductTemplateFragment extends DialogFragment {
 
       @Override
       public void afterTextChanged(Editable s) {
+        // do nothing
       }
     }
   }
@@ -218,7 +215,7 @@ public class AddProductTemplateFragment extends DialogFragment {
 
 
   public interface OnCreateProductTemplateListener {
-    public void OnCreateProductTemplateListener(String name, String price, List<ProductTemplateComponent> productTemplateComponents);
+    public void onCreateProductTemplate(String name, String price, List<ProductTemplateComponent> productTemplateComponents);
   }
 
 }

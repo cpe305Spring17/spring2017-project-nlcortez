@@ -14,12 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.materialcategories.AddMaterialCategoryFragment;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,7 +60,9 @@ public class AddMaterialTemplateFragment extends DialogFragment {
         MaterialCategory item = (MaterialCategory) parent.getItemAtPosition(pos);
         unitText.setText(item.getUnit());
       }
+      @Override
       public void onNothingSelected(AdapterView<?> parent) {
+        // do nothing
       }
     });
 
@@ -73,7 +72,7 @@ public class AddMaterialTemplateFragment extends DialogFragment {
             .setTitle("Add Material Template")
             .setPositiveButton("add",new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
-                callback.OnCreateMaterialTemplateListener(
+                callback.onCreateMaterialTemplate(
                         (MaterialCategory) categorySpinner.getSelectedItem(),
                         nameView.getText().toString(),
                         quantityView.getText().toString(),
@@ -84,7 +83,7 @@ public class AddMaterialTemplateFragment extends DialogFragment {
   }
 
   public interface OnCreateMaterialTemplateListener {
-    public void OnCreateMaterialTemplateListener(MaterialCategory category, String name, String quantity, String cost);
+    public void onCreateMaterialTemplate(MaterialCategory category, String name, String quantity, String cost);
   }
 
 }

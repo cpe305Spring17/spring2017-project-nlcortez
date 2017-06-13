@@ -7,20 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.natasha.bookkeepingbuddy.R;
 import com.example.natasha.bookkeepingbuddy.model.Material;
-import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
-import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 /**
  * Created by Natasha on 6/6/2017.
@@ -62,7 +52,7 @@ public class EditMaterialFragment extends DialogFragment {
     attributeView.setText(material.getAttribute());
     quantityView.setText(material.curQuantityText());
     totalView.setText(material.runningTotalText());
-    addQuantityView.setText(material.getMaterialTemplate().getMeasuredQuantity() + "", TextView.BufferType.NORMAL);
+    addQuantityView.setText(Integer.toString(material.getMaterialTemplate().getMeasuredQuantity()), TextView.BufferType.NORMAL);
     unitView.setText(material.getMaterialTemplate().getCategory().getUnit());
 
     return new AlertDialog.Builder(getActivity())
@@ -70,7 +60,7 @@ public class EditMaterialFragment extends DialogFragment {
             .setTitle("Update Material")
             .setPositiveButton("update",new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
-                callback.OnEditMaterialListener(
+                callback.onEditMaterialListener(
                         material,
                         addQuantityView.getText().toString());
               }
@@ -83,7 +73,7 @@ public class EditMaterialFragment extends DialogFragment {
   }
 
   public interface OnEditMaterialListener {
-    public void OnEditMaterialListener(Material material, String additionalAmount);
+    public void onEditMaterialListener(Material material, String additionalAmount);
   }
 }
 

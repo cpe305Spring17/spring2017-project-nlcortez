@@ -23,16 +23,13 @@ import java.util.List;
 public class MaterialsFragment extends Fragment implements MaterialsContract.View, AddMaterialFragment.OnCreateMaterialTemplateListener, EditMaterialFragment.OnEditMaterialListener {
   private static MaterialsContract.Presenter presenter;
 
-  private RecyclerView recView;
   private List<Material> materials;
   private MaterialsAdapter adapter;
-  private DBHelper dbHelper;
-
-  public MaterialsFragment() {
-  }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    DBHelper dbHelper;
+
     super.onCreate(savedInstanceState);
     adapter = new MaterialsAdapter(materials, getContext());
     dbHelper = DBHelper.getInstance(getContext());
@@ -51,6 +48,8 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View rootView;
+    RecyclerView recView;
+
     rootView = inflater.inflate(R.layout.fragment_materials, container, false);
 
     recView = (RecyclerView) rootView.findViewById(R.id.materials_list);
@@ -134,7 +133,9 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
     }
 
     class MaterialsAdapterHolder extends RecyclerView.ViewHolder {
-      private TextView name, template, curQuantity;
+      private TextView name;
+      private TextView template;
+      private TextView curQuantity;
 
       public MaterialsAdapterHolder(View itemView) {
         super(itemView);
@@ -148,13 +149,13 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Vie
 
 
   @Override
-  public void OnCreateMaterialListener(MaterialTemplate template, String attribute) {
+  public void onCreateMaterialListener(MaterialTemplate template, String attribute) {
     presenter.saveNewMaterial(template, attribute);
   }
 
 
   @Override
-  public void OnEditMaterialListener(Material material, String additionalAmount) {
+  public void onEditMaterialListener(Material material, String additionalAmount) {
     presenter.updateMaterial(material, additionalAmount);
   }
 }

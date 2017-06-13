@@ -14,28 +14,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.natasha.bookkeepingbuddy.R;
-import com.example.natasha.bookkeepingbuddy.materials.MaterialsFragment;
-import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
 import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
-import com.google.android.gms.analytics.ecommerce.Product;
 
 import java.util.List;
 
 public class ProductTemplatesFragment extends Fragment implements ProductTemplatesContract.View, AddProductTemplateFragment.OnCreateProductTemplateListener {
   private static ProductTemplatesContract.Presenter presenter;
 
-  private RecyclerView recView;
   private List<ProductTemplate> productTemplates;
   private ProductTemplatesFragment.ProductTemplatesAdapter adapter;
-  private DBHelper dbHelper;
 
   public ProductTemplatesFragment() {
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    DBHelper dbHelper;
+
     super.onCreate(savedInstanceState);
     adapter = new ProductTemplatesAdapter(productTemplates, getContext());
     dbHelper = DBHelper.getInstance(getContext());
@@ -46,6 +43,8 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View rootView;
+    RecyclerView recView;
+
     rootView = inflater.inflate(R.layout.fragment_product_templates, container, false);
 
     recView = (RecyclerView) rootView.findViewById(R.id.prod_temps_list);
@@ -79,11 +78,11 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
 
   @Override
   public void showProductTemplateDetails(ProductTemplate productTemplate) {
-
+    // TO-DO
   }
 
   @Override
-  public void OnCreateProductTemplateListener(String name, String price, List<ProductTemplateComponent> productTemplateComponents) {
+  public void onCreateProductTemplate(String name, String price, List<ProductTemplateComponent> productTemplateComponents) {
     presenter.saveNewProductTemplate(name, price, productTemplateComponents);
   }
 
@@ -131,7 +130,9 @@ public class ProductTemplatesFragment extends Fragment implements ProductTemplat
     }
 
     class ProductTemplatesAdapterHolder extends RecyclerView.ViewHolder {
-      private TextView name, price, materialCategories;
+      private TextView name;
+      private TextView price;
+      private TextView materialCategories;
 
       public ProductTemplatesAdapterHolder(View itemView) {
         super(itemView);

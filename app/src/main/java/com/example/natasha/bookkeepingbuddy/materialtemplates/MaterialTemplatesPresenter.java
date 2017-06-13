@@ -1,12 +1,7 @@
 package com.example.natasha.bookkeepingbuddy.materialtemplates;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
-
-import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
-import com.example.natasha.bookkeepingbuddy.model.data.DBHelper;
 import com.example.natasha.bookkeepingbuddy.model.data.DBQueries;
 
 import java.util.List;
@@ -43,6 +38,6 @@ public class MaterialTemplatesPresenter implements MaterialTemplatesContract.Pre
 
   @Override
   public void openMaterialTemplateDetails(MaterialTemplate materialTemplate) {
-
+    // TO-DO
   }
 }

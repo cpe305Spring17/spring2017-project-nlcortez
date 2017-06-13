@@ -27,16 +27,13 @@ public class MaterialCategoriesFragment extends Fragment implements MaterialCate
 AddMaterialCategoryFragment.OnMaterialCategoryListener {
   private MaterialCategoriesContract.Presenter presenter;
 
-  private RecyclerView recView;
   private List<MaterialCategory> materialCategories;
   private MaterialCategoriesAdapter adapter;
-  private DBHelper dbHelper;
-
-  public MaterialCategoriesFragment() {
-  }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    DBHelper dbHelper;
+
     super.onCreate(savedInstanceState);
     adapter = new MaterialCategoriesAdapter(materialCategories, getContext());
     dbHelper = DBHelper.getInstance(getContext());
@@ -53,6 +50,8 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View rootView;
+    RecyclerView recView;
+
     rootView = inflater.inflate(R.layout.fragment_material_categories, container, false);
 
     recView = (RecyclerView)rootView.findViewById(R.id.material_categories_list);
@@ -88,12 +87,8 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
   @Override
   public void showMaterialCategoryDetails(String categoryId) {
-
+    // TO-DO
   }
-
-  /**
-   * Created by Natasha on 5/30/2017.
-   */
 
   private static class MaterialCategoriesAdapter extends RecyclerView.Adapter<MaterialCategoriesAdapter.MaterialCategoriesAdapterHolder> {
     private List<MaterialCategory> materialCategories;
@@ -138,13 +133,6 @@ AddMaterialCategoryFragment.OnMaterialCategoryListener {
 
         category = (TextView)itemView.findViewById(R.id.mat_cat_category);
         unit = (TextView)itemView.findViewById(R.id.mat_cat_unit);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-
-          }
-        });
       }
     }
   }

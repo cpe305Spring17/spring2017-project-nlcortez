@@ -1,6 +1,5 @@
 package com.example.natasha.bookkeepingbuddy.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +19,7 @@ public class ProductTemplate {
   }
 
   public ProductTemplate(int id, String productName, double price, List<ProductTemplateComponent> materialsNeeded) {
+    this.id = id;
     this.productName = productName;
     this.price = price;
     this.materialsNeeded = materialsNeeded;
@@ -41,26 +41,41 @@ public class ProductTemplate {
     this.price = price;
   }
 
-  public int getId() { return id;}
-
-  public void setId(int id) { this.id = id; }
-
-  public String categoriesText() {
-    String ret = "materials needed: ";
-    ProductTemplateComponent curComponent;
-
-    for (int i = 0; i < materialsNeeded.size(); i ++) {
-      curComponent = materialsNeeded.get(i);
-
-      if (i == materialsNeeded.size() - 1)
-        ret += curComponent.getCategory().toString() + " (" + curComponent.getQuantityNeeded() + " " + curComponent.getCategory().getUnit() + ") ";
-      else
-        ret += materialsNeeded.get(i).getCategory().toString() + " (" + curComponent.getQuantityNeeded() + " " + curComponent.getCategory().getUnit() + "), ";
-    }
-    return ret;
+  public int getId() {
+    return id;
   }
 
-  public List<ProductTemplateComponent> getMaterialsNeeded() { return materialsNeeded; }
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String categoriesText() {
+    StringBuilder builder = new StringBuilder("materials needed: ");
+    ProductTemplateComponent curComponent;
+
+    for (int i = 0; i < materialsNeeded.size(); i++) {
+      curComponent = materialsNeeded.get(i);
+
+      if (i == materialsNeeded.size() - 1) {
+        builder.append(curComponent.getCategory().toString());
+        builder.append(" (");
+        builder.append(curComponent.getQuantityNeeded());
+        builder.append(" ");
+        builder.append(curComponent.getCategory().getUnit() + ") ");
+      } else {
+        builder.append(curComponent.getCategory().toString());
+        builder.append(" (");
+        builder.append(curComponent.getQuantityNeeded());
+        builder.append(" ");
+        builder.append(curComponent.getCategory().getUnit() + "), ");
+      }
+    }
+    return builder.toString();
+  }
+
+  public List<ProductTemplateComponent> getMaterialsNeeded() {
+    return materialsNeeded;
+  }
 
   public void addComponent(ProductTemplateComponent component) {
     materialsNeeded.add(component);

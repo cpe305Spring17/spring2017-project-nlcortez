@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class ProductTemplatesPresenter implements ProductTemplatesContract.Presenter {
-  final private ProductTemplatesContract.View view;
+  private final ProductTemplatesContract.View view;
   private List<ProductTemplate> productTemplates;
 
   public ProductTemplatesPresenter(ProductTemplatesContract.View view) {
@@ -39,11 +39,11 @@ public class ProductTemplatesPresenter implements ProductTemplatesContract.Prese
 
   @Override
   public void updateProductTemplate(List<ProductTemplateComponent> components, String additionalAmount) {
-
+    // TO-DO
   }
 
   @Override
   public void openProductTemplateDetails(ProductTemplate productTemplate) {
-
+    // TO-DO
   }
 }

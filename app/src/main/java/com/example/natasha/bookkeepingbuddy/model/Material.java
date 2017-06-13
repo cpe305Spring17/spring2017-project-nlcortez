@@ -47,9 +47,7 @@ public class Material {
     return runningTotal;
   }
 
-  public void setRunningTotal(int currentQuantity) {
-    this.currentQuantity = runningTotal;
-  }
+  public void setRunningTotal(int amount) { this.runningTotal = amount; }
 
 
   public int getId() { return id;}
@@ -64,8 +62,7 @@ public class Material {
 
   public double getPartialCost(int amountUsed) {
     double percentUsed = (double) amountUsed / (double) template.getMeasuredQuantity();
-    double cost = percentUsed * template.getCost();
 
-    return cost;
+    return percentUsed * template.getCost();
   }
 }

@@ -1,14 +1,10 @@
 package com.example.natasha.bookkeepingbuddy.producttemplates;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.natasha.bookkeepingbuddy.BaseActivity;
 import com.example.natasha.bookkeepingbuddy.R;

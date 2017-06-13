@@ -9,7 +9,6 @@ import com.example.natasha.bookkeepingbuddy.model.MaterialCategory;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplate;
 import com.example.natasha.bookkeepingbuddy.model.ProductTemplateComponent;
-import com.google.android.gms.analytics.ecommerce.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,11 @@ public class DBQueries {
   private static DBHelper dbHelper = DBHelper.getInstance();
   private static SQLiteDatabase writableDB = dbHelper.getWritableDatabase();
   private static SQLiteDatabase readableDB = dbHelper.getReadableDatabase();
+  private static final String ID_CLAUSE = "_ID=?";
+
+  private DBQueries() {
+    // empty constructor
+  }
 
   /* Material Categories Queries */
   public static List getAllMaterialCategories() {
@@ -66,13 +70,12 @@ public class DBQueries {
             DBContract.MaterialCategoryEntry.COLUMN_UNIT
     };
 
-    String whereClause = "_ID=?";
     String[] args = {Integer.toString(id)};
 
     Cursor cursor = readableDB.query(
             DBContract.MaterialCategoryEntry.TABLE_NAME,
             projection,
-            whereClause,
+            ID_CLAUSE,
             args,
             null,
             null,
@@ -84,15 +87,6 @@ public class DBQueries {
     }
     return materialCategory;
   }
-
-//  public static void updateMaterialCategory(int id) {
-//    ContentValues values = new ContentValues();
-//    //values.put(DBContract.MaterialCategoryEntry.COLUMN_NAME, materialCategory.getName());
-//    //values.put(DBContract.MaterialCategoryEntry.COLUMN_UNIT, materialCategory.getUnit());
-//
-//    writableDB.update(DBContract.MaterialCategoryEntry.TABLE_NAME, values, "_ID="+id, null);
-//
-//  }
 
   /* Material Templates Queries */
   public static List getAllMaterialTemplates() {
@@ -147,13 +141,12 @@ public class DBQueries {
             DBContract.MaterialTemplateEntry.COLUMN_COST
     };
 
-    String whereClause = "_ID=?";
     String[] args = {Integer.toString(id)};
 
     Cursor cursor = readableDB.query(
             DBContract.MaterialTemplateEntry.TABLE_NAME,
             projection,
-            whereClause,
+            ID_CLAUSE,
             args,
             null,
             null,
@@ -225,13 +218,12 @@ public class DBQueries {
             DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL
     };
 
-    String whereClause = "_ID=?";
     String[] args = {Integer.toString(id)};
 
     Cursor cursor = readableDB.query(
             DBContract.MaterialEntry.TABLE_NAME,
             projection,
-            whereClause,
+            ID_CLAUSE,
             args,
             null,
             null,
@@ -259,13 +251,12 @@ public class DBQueries {
             DBContract.MaterialEntry.COLUMN_RUNNING_TOTAL
     };
 
-    String whereClause = "_ID=?";
     String[] args = {Integer.toString(id)};
 
     Cursor cursor = readableDB.query(
             DBContract.MaterialEntry.TABLE_NAME,
             projection,
-            whereClause,
+            ID_CLAUSE,
             args,
             null,
             null,
@@ -313,10 +304,8 @@ public class DBQueries {
     while (cursor.moveToNext()) {
       List<ProductTemplateComponent> components = DBQueries.getProductTemplateComponents(cursor.getInt(0));
 
-      if (null != components) {
-        ProductTemplate productTemplate = new ProductTemplate(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), components);
-        productTemplates.add(productTemplate);
-      }
+      ProductTemplate productTemplate = new ProductTemplate(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), components);
+      productTemplates.add(productTemplate);
     }
     return productTemplates;
   }
@@ -336,7 +325,7 @@ public class DBQueries {
 
   /* ProductTemplateComponent Queries */
   public static List<ProductTemplateComponent> getProductTemplateComponents(int id) {
-    List<ProductTemplateComponent> productTemplateComponents = new ArrayList<ProductTemplateComponent>();
+    List<ProductTemplateComponent> productTemplateComponents = new ArrayList<>();
 
     String[] projection = {
             DBContract.ProdTempCompEntry.COLUMN_CATEGORY,

@@ -51,15 +51,17 @@ public class AddMaterialFragment extends DialogFragment {
     final TextView costView = (TextView) v.findViewById(R.id.material_cost_textview);
 
     List<MaterialTemplate> materialTemplates = DBQueries.getAllMaterialTemplates();
-    ArrayAdapter<MaterialTemplate> adapter = new ArrayAdapter<MaterialTemplate>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, materialTemplates);
+    ArrayAdapter<MaterialTemplate> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, materialTemplates);
     templateSpinner.setAdapter(adapter);
     templateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         MaterialTemplate item = (MaterialTemplate) parent.getItemAtPosition(pos);
         quantityView.setText(item.getMeasuredQuantity() + " " + item.getCategory().getUnit());
-        costView.setText(item.getCost() + "");
+        costView.setText(Double.toString(item.getCost()));
       }
+      @Override
       public void onNothingSelected(AdapterView<?> parent) {
+        // do nothing
       }
     });
 
@@ -69,7 +71,7 @@ public class AddMaterialFragment extends DialogFragment {
             .setTitle("Add Material")
             .setPositiveButton("add",new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
-                callback.OnCreateMaterialListener(
+                callback.onCreateMaterialListener(
                         (MaterialTemplate) templateSpinner.getSelectedItem(),
                         attributeView.getText().toString());
               }
@@ -78,6 +80,6 @@ public class AddMaterialFragment extends DialogFragment {
   }
 
   public interface OnCreateMaterialTemplateListener {
-    public void OnCreateMaterialListener(MaterialTemplate template, String attribute);
+    public void onCreateMaterialListener(MaterialTemplate template, String attribute);
   }
 }

@@ -1,7 +1,5 @@
 package com.example.natasha.bookkeepingbuddy.materials;
 
-import android.support.annotation.NonNull;
-
 import com.example.natasha.bookkeepingbuddy.model.Material;
 import com.example.natasha.bookkeepingbuddy.model.MaterialTemplate;
 
